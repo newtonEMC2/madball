@@ -4,12 +4,14 @@
     
     var controller = (function(){
         
-        //variables
+        //////////////////////////////////
+        //  variables
+        //////////////////////////////////
         var cnv = document.getElementById("canvas"),
-            _ctx = cnv.getContext('2d'),
+            ctx = cnv.getContext('2d'),
 
-            _canvas_w = cnv.width,
-            _canvas_h = cnv.height,
+            canvas_w = cnv.width,
+            canvas_h = cnv.height,
 
             col_arr = [],
             bird = null,
@@ -17,18 +19,22 @@
             frame_divisor = 200,
             frame_count = 0;
 
-        //events 
+        //////////////////////////////////
+        //  events
+        ////////////////////////////////// 
         document.onkeydown = function(e){
             if(e.keyCode == 32) {
                 bird.jump();
             }
         }
 
-
-        function _render(){
+        //////////////////////////////////
+        //  rendering
+        //////////////////////////////////
+        function render(){
             frame_count++;
 
-            _ctx.clearRect(0,0,_canvas_w,_canvas_h);
+            ctx.clearRect(0,0,canvas_w,canvas_h);
 
             //render bird
             bird.draw();
@@ -42,7 +48,7 @@
 
             //new column
             if(frame_count % frame_divisor == 0){
-                col_arr.push(global.model.Columns(_ctx));
+                col_arr.push(global.model.Columns(ctx));
                 frame_divisor = __.random(160, 200);
                 frame_count = 0;
             }
@@ -55,21 +61,24 @@
             //check up for off limits
             bird.bounce_off();   
 
-            requestAnimationFrame(_render);
+            requestAnimationFrame(render);
         }   
         
+        
+        //////////////////////////////////
+        //  init
+        //////////////////////////////////
         window.onload = function(){
             //instances
-            bird = global.model.Bird(_ctx);
-            col_arr.push(global.model.Columns(_ctx));
-            requestAnimationFrame(_render);
+            bird = global.model.Bird(ctx);
+            col_arr.push(global.model.Columns(ctx));
+            requestAnimationFrame(render);
         }
         
         return {
-            ctx: _ctx,
-            canvas_w: _canvas_w,
-            canvas_h: _canvas_h,
-            render: _render
+            ctx: ctx,
+            canvas_w: canvas_w,
+            canvas_h: canvas_h,
         }
         
     

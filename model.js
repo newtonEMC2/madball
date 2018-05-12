@@ -17,7 +17,7 @@
             this.draw = function(){
                 ctx.beginPath();
                 ctx.arc(this.x,this.y,this.radius,0,2*Math.PI);
-                ctx.fillStyle = "green";
+                ctx.fillStyle = 'green';
                 ctx.fill();
             }, 
 
@@ -50,7 +50,7 @@
             this.draw = function(){
                 ctx.rect(this.x, 0, this.col_w, this.top_section);
                 ctx.rect(this.x, this.top_section + this.gap, this.col_w, global.controller.canvas_h);
-                ctx.fillStyle = "white";
+                ctx.fillStyle = "blue";
                 ctx.fill();
             }
 
