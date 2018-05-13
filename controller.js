@@ -34,15 +34,15 @@
         function render(){
             frame_count++;
 
-            ctx.clearRect(0,0,canvas_w,canvas_h);
+           ctx.clearRect(0,0,canvas_w,canvas_h);
 
             //render bird
-            bird.draw();
+            bird.draw(ctx);
             bird.move();
 
             //render columns
             for(var i = col_arr.length - 1; i > -1; i--){
-                col_arr[i].draw();
+                col_arr[i].draw(ctx);
                 col_arr[i].move();
             }
 
