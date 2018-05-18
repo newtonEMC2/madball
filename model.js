@@ -12,8 +12,8 @@
             this.dx = 0,
             this.dy = 0,
             this.g = global.config.gravity,
-            this.radius = global.config.ballRadius,
-            this.color = global.config.ballColor,
+            this.radius = global.config.ball_radius,
+            this.color = global.config.ball_color,
 
             this.draw = function(ctx){
                 ctx.beginPath();

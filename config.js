@@ -1,15 +1,17 @@
 ;(function(global){
     
+    "use strict";
+    
     var config = (function(){
         
         //////////////////////////////////
         //  ball
         //////////////////////////////////
-        var ballRadius = 15,
-            ballColor = "blue",
+        var ball_radius = 15,
+            ball_color = "blue",
             gravity = .1,
-            initialPositionX = global.controller.canvas_w / 2,
-            initialPositionY = global.controller.canvas_h / 2;
+            initial_position_X = global.controller.canvas_w / 2,
+            initial_position_Y = global.controller.canvas_h / 2;
         
         
         
@@ -20,11 +22,11 @@
         //////////////////////////////////
         
         return {
-            ballRadius: ballRadius,
-            ballColor: ballColor,
+            ball_radius: ball_radius,
+            ball_color: ball_color,
             gravity: gravity,
-            Xo: initialPositionX,
-            Yo: initialPositionY
+            Xo: initial_position_X,
+            Yo: initial_position_Y
         }
         
         
