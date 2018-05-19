@@ -11,7 +11,7 @@
             this.y = global.config.Yo,
             this.dx = 0,
             this.dy = 0,
-            this.g = global.config.gravity,
+            this.g = global.config.getGravity(),
             this.radius = global.config.ball_radius,
             this.color = global.config.ball_color,
 

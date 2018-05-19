@@ -17,25 +17,40 @@
             bird = null,
 
             frame_divisor = 200,
-            frame_count = 0;
+            frame_count = 0,
+        
+            pressed = false;
 
         //////////////////////////////////
-        //  events
+        //  events 
         ////////////////////////////////// 
         document.onkeydown = function(e){
-            if(e.keyCode == 32) {
+            if(e.keyCode == 32 && !pressed) {
                 bird.jump();
+                pressed = true;
             }
         }
         
+        document.onkeyup = function(e){
+            pressed = false;
+        }
+        
         //////////////////////////////////
-        //  functions
+        //  functions 
         //////////////////////////////////
         function check_colision(){
             
         }
         
-        
+        function setConfig(){
+            if (!localStorage.getItem("config")){
+                localStorage.setItem("config", "{}");
+                global.db.create("gravity", global.config.getGravity());
+            }
+            else{
+                global.config.setGravity(parseFloat(global.db.read("gravity")));
+            }
+        }
         
 
         //////////////////////////////////
@@ -44,7 +59,7 @@
         function render(){
             frame_count++;
 
-           ctx.clearRect(0,0,canvas_w,canvas_h);
+            ctx.clearRect(0,0,canvas_w,canvas_h);
 
             //render bird
             bird.draw(ctx);
@@ -79,9 +94,17 @@
         //  init
         //////////////////////////////////
         window.onload = function(){
+            /* to keep this order is important*/
+            
+            //check db
+            setConfig();
+            
             //instances
             bird = global.model.Bird(ctx);
             col_arr.push(global.model.Columns(ctx));
+            
+            
+            //start rendering
             requestAnimationFrame(render);
         }
         

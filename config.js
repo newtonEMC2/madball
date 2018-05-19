@@ -13,7 +13,15 @@
             initial_position_X = global.controller.canvas_w / 2,
             initial_position_Y = global.controller.canvas_h / 2;
         
+        //getters
+        function getGravity(){
+            return gravity;
+        }
         
+        //setters
+        function setGravity(val){
+            gravity = val;
+        }
         
         
         
@@ -24,9 +32,10 @@
         return {
             ball_radius: ball_radius,
             ball_color: ball_color,
-            gravity: gravity,
+            getGravity: getGravity,
             Xo: initial_position_X,
-            Yo: initial_position_Y
+            Yo: initial_position_Y,
+            setGravity: setGravity
         }
         
         
