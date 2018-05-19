@@ -122,5 +122,5 @@
     
     
 
-})(window.madball || {}, window.__)
+})(window.madball || {}, window.__);
 

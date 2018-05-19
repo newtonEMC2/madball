@@ -46,4 +46,4 @@
     global.db = db;
     window.madball = global;
     
-})(window.madball || {})
+})(window.madball || {});

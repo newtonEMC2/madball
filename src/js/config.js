@@ -47,4 +47,4 @@
     global.config = config;
     window.madball = global;
 
-})(window.madball || {})
+})(window.madball || {});
