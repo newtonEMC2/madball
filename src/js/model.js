@@ -6,14 +6,14 @@
     
         function _Bird(ctx){
             
-            this.canvas_h = global.controller.canvas_h,
+            this.canvas_h = global.config.getCnvHeight(),
             this.x = global.config.Xo,
             this.y = global.config.Yo,
             this.dx = 0,
             this.dy = 0,
             this.g = global.config.getGravity(),
             this.radius = global.config.ball_radius,
-            this.color = global.config.ball_color,
+            this.color = global.config.getBallColor(),
 
             this.draw = function(ctx){
                 ctx.beginPath();
@@ -42,18 +42,19 @@
         }
 
         function _Columns(ctx){
-
-            this.x = global.controller.canvas_w,
+            this.canvas_h = global.config.getCnvHeight(),
+            this.x = global.config.getCnvWidth(),
             this.col_w = 20;
-            this.top_section = __.random(global.controller.canvas_h*.2,global.controller.canvas_h*.7),
-            this.gap = __.random(global.controller.canvas_h*.15,global.controller.canvas_h*.30),
+            this.top_section = __.random(this.canvas_h*.2, this.canvas_h*.7),
+            this.gap = __.random(this.canvas_h*.15, this.canvas_h*.30),
+            this.color = global.config.getColumnsColor(),
 
             this.draw = function(ctx){
                 ctx.rect(this.x, 0, this.col_w, this.top_section);
-                ctx.fillStyle = "white";
+                ctx.fillStyle = this.color;
                 ctx.fill();
-                ctx.rect(this.x, this.top_section + this.gap, this.col_w, global.controller.canvas_h);
-                ctx.fillStyle = "white";
+                ctx.rect(this.x, this.top_section + this.gap, this.col_w, this.canvas_h);
+                ctx.fillStyle = this.color;
                 ctx.fill();
                 
             }

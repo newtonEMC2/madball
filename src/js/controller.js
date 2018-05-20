@@ -7,18 +7,17 @@
         //////////////////////////////////
         //  variables
         //////////////////////////////////
-        var cnv = document.getElementById("canvas"),
-            ctx = cnv.getContext('2d'),
+        var ctx = null,
 
-            canvas_w = cnv.width,
-            canvas_h = cnv.height,
-
+            canvas_w = null,
+            canvas_h = null,
+        
             col_arr = [],
             bird = null,
 
             frame_divisor = 200,
             frame_count = 0,
-        
+
             pressed = false;
 
         //////////////////////////////////
@@ -96,24 +95,24 @@
         window.onload = function(){
             /* to keep this order is important*/
             
-            //check db
+            //set variables on the controller so the rendering method does not
+            //have to go and get them every time is rendered
+            ctx = global.config.getContext();
+            canvas_w = global.config.getCnvWidth();
+            canvas_h = global.config.getCnvHeight();
+            
+            //check db and retrieve custimized config if there is any
             setConfig();
             
             //instances
             bird = global.model.Bird(ctx);
             col_arr.push(global.model.Columns(ctx));
             
-            
             //start rendering
             requestAnimationFrame(render);
         }
         
-        return {
-            ctx: ctx,
-            canvas_w: canvas_w,
-            canvas_h: canvas_h,
-        }
-        
+                
     
     })();
     
