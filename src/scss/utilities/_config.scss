@@ -1,0 +1,47 @@
+//================================================
+//Global config
+//================================================
+
+//Font stacks
+
+$font-url--google        : 'https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900';
+
+$font-family--primary    : 'Lato', 'Helevtica Neue', Helvetica, Arial, sans-serif;
+$font-family--secondary  : 'Helevtica Neue', Helvetica, Arial, sans-serif;
+
+//Font weights
+
+$font-weight--thin        : 100;
+$font-weight--light       : 300;
+$font-weight--medium      : 400;
+$font-weight--bold        : 700;
+$font-weight--ultra-bold  : 900;
+
+//Text
+
+$base__font-size: 16px;
+$base__line     : 24px;
+
+// Descriptive Base Colors
+
+$white : #fff;
+$black : #0b0b0b;
+$grey  : #797e83;
+
+$mine-shaft         : #333;
+$ebony-clay         : #212B36;
+$outer-space        : #1E312D;
+$wheat              : #F4D6B6;
+
+// Color Usage
+
+$color-primary   : $mine-shaft;
+$color-secondary : $wheat;
+$color-accent    : $outer-space;
+$color-shadow    : rgba($black, .2);
+
+//breakpoints
+
+$brkpoint-sm    : 1px;
+$brkpoint-md    : 550px;
+$brkpoint-lg    : 800px;

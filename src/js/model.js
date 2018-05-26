@@ -28,7 +28,7 @@
             },
 
             this.jump = function(){
-                this.dy = -4  ;
+                this.dy = -4;
             }
 
             this.bounce_off = function(){
@@ -38,6 +38,13 @@
                 else if(this.y > this.canvas_h - this.radius){//bottom
                     this.dy = -5;  
                 }
+            }
+            
+            this.blink = function(collided){
+                this.color = "green";
+                setTimeout(function(){
+                    this.color = "blue";
+                },100);
             }
         }
 
@@ -50,9 +57,8 @@
             this.color = global.config.getColumnsColor(),
 
             this.draw = function(ctx){
+                ctx.beginPath();
                 ctx.rect(this.x, 0, this.col_w, this.top_section);
-                ctx.fillStyle = this.color;
-                ctx.fill();
                 ctx.rect(this.x, this.top_section + this.gap, this.col_w, this.canvas_h);
                 ctx.fillStyle = this.color;
                 ctx.fill();
@@ -61,10 +67,6 @@
 
             this.move = function(){
                 this.x--;
-            }
-
-            this.collision = function(){
-
             }
         }
         

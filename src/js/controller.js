@@ -18,7 +18,8 @@
             frame_divisor = 200,
             frame_count = 0,
 
-            pressed = false;
+            pressed = false,
+            collided = false;
 
         //////////////////////////////////
         //  events 
@@ -38,6 +39,19 @@
         //  functions 
         //////////////////////////////////
         function check_colision(){
+            for(var i = col_arr.length - 1; i > -1; i--){
+                if(bird.x + bird.radius >= col_arr[i].x &&
+                   bird.x + bird.radius <= col_arr[i].x + col_arr[i].col_w
+                   ){
+                    if(bird.y - bird.radius <= col_arr[i].top_section ||
+                       bird.y + bird.radius >= col_arr[i].top_section + col_arr[i].gap){
+                        return true;
+                        
+                    }
+                
+                }
+            }
+               
             
         }
         
@@ -51,6 +65,7 @@
             }
         }
         
+                
 
         //////////////////////////////////
         //  rendering
@@ -59,7 +74,7 @@
             frame_count++;
 
             ctx.clearRect(0,0,canvas_w,canvas_h);
-
+            
             //render bird
             bird.draw(ctx);
             bird.move();
@@ -83,7 +98,17 @@
             }
 
             //check up for off limits
-            bird.bounce_off();   
+            bird.bounce_off(); 
+            
+            //check up for collision with columns
+            if(!collided && check_colision()){
+                collided = true;
+                bird.color = "green";
+                setTimeout(function(){
+                    bird.color = "blue";
+                    collided = false;
+                },1500);
+            };
 
             requestAnimationFrame(render);
         }   

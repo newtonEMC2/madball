@@ -1,0 +1,55 @@
+//================================================
+//mixins
+//================================================
+
+// Media queries
+
+@mixin mq($break) {
+  @if $break == "s" {
+    @media (min-width: $brkpoint-sm) and (max-width: $brkpoint-md) {
+      @content;
+    }
+  }
+  @else if $break == "m" {
+    @media (min-width: $brkpoint-md + 1) {
+      @content;
+    }
+  }
+  @else if $break == "l" {
+    @media (min-width: $brkpoint-lg) {
+      @content;
+    }
+  }
+   @else {
+   	@error "no breakpoint for value `#{$break}`."
+  }
+}
+
+//flex display
+
+@mixin flexy($disp: flex, $dir: null, $wrap: null, $just: null, $alig: null){
+    display: $disp;
+    flex-direction: $dir;
+    flex-wrap: $wrap;
+    justify-content: $just;
+    align-items: $alig;
+}
+
+//pseudoelement 
+
+@mixin pseudo($p-el, $display: block, $position: absolute){
+    
+    @if $p-el == "before" or $p-el == "after"{
+        
+        &::#{$p-el}{
+            content: "";
+            display: $display;
+            position: $position;
+            @content; 
+        }
+    }
+    @else{
+        @error "`#{$el}` is not a valid pseudo-element.";
+    }
+}
+
