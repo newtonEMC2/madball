@@ -8,12 +8,13 @@
         //  variables  
         //////////////////////////////////
         
-        //DOM
+        //DOM cache
         var cnv = document.getElementById("canvas"),
             ctx = cnv.getContext('2d'),
-
             canvas_w = cnv.width,
-            canvas_h = cnv.height;
+            canvas_h = cnv.height,
+        
+            lifeCouter = document.getElementsByClassName("infoPanel__lifes")[0];
         
         //ball
         var ball_radius = 15,
@@ -25,10 +26,15 @@
         //column
         var columns_color = "white";
         
+        //game
+        var lifes = 2;
+        
         
         //////////////////////////////////
         //  getters 
         //////////////////////////////////
+        
+        //DOM
         
         function getContext(){
             return ctx;
@@ -42,6 +48,12 @@
             return canvas_h;
         }
         
+        function getLifeCounter(){
+            return lifeCouter;
+        }
+        
+        //ball
+        
         function getBallColor(){
             return ball_color;
         }
@@ -50,8 +62,15 @@
             return gravity;
         }
         
+        //Columns
+        
         function getColumnsColor(){
             return columns_color;
+        }
+        
+        //game
+        function getLifes(){
+            return lifes;
         }
         
         //////////////////////////////////
@@ -76,11 +95,14 @@
             getContext: getContext,
             getCnvHeight: getCnvHeight,
             getCnvWidth: getCnvWidth,
+            getLifeCounter: getLifeCounter,
             
             getBallColor: getBallColor,
             getGravity: getGravity,
             
             getColumnsColor: getColumnsColor,
+            
+            getLifes: getLifes,
             
             
             //setters

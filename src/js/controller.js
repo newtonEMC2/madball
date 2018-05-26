@@ -7,11 +7,15 @@
         //////////////////////////////////
         //  variables
         //////////////////////////////////
+        
+        //DOM cache
         var ctx = null,
-
             canvas_w = null,
             canvas_h = null,
-        
+            
+            lifeCounter = null,
+            
+            //instances cache
             col_arr = [],
             bird = null,
             game = null,
@@ -54,7 +58,7 @@
             }
         }
         
-        function setConfig(){
+        function setConfigOnDB(){
             if (!localStorage.getItem("config")){
                 localStorage.setItem("config", "{}");
                 global.db.create("gravity", global.config.getGravity());
@@ -62,6 +66,11 @@
             else{
                 global.config.setGravity(parseFloat(global.db.read("gravity")));
             }
+        }
+        
+        function uiLifesUpdate(){
+            if(game.lifes != -1){lifeCounter.innerHTML = game.lifes}
+            else{lifeCounter.innerHTML = 0}
         }
         
                 
@@ -84,13 +93,6 @@
                 col_arr[i].move();
             }
             
-            //game over?
-            if(!game.gameOver()){
-                requestAnimationFrame(render);
-            }else{
-                cancelAnimationFrame(raf);
-            } 
-
             //new column
             if(frame_count % frame_divisor == 0){
                 col_arr.push(global.model.Columns(ctx));
@@ -117,6 +119,15 @@
                 },1500);
             };
             
+            //update life's counter
+            uiLifesUpdate();
+            
+            //game over?
+            if(!game.gameOver()){
+                requestAnimationFrame(render);
+            }else{
+                cancelAnimationFrame(raf);
+            } 
             
                
         }   
@@ -133,9 +144,13 @@
             ctx = global.config.getContext();
             canvas_w = global.config.getCnvWidth();
             canvas_h = global.config.getCnvHeight();
+            lifeCounter = global.config.getLifeCounter();
+            
+            //ui
+            
             
             //check db and retrieve custimized config if there is any
-            setConfig();
+            setConfigOnDB();
             
             //instances
             

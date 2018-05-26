@@ -64,7 +64,7 @@
         }
         
         var _Game = {
-            lifes: 2,
+            lifes: global.config.getLifes(),
             reduceLife: function(){
                 this.lifes--;
             },
