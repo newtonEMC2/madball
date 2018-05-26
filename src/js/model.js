@@ -39,13 +39,6 @@
                     this.dy = -5;  
                 }
             }
-            
-            this.blink = function(collided){
-                this.color = "green";
-                setTimeout(function(){
-                    this.color = "blue";
-                },100);
-            }
         }
 
         function _Columns(ctx){
@@ -70,14 +63,25 @@
             }
         }
         
+        var _Game = {
+            lifes: 2,
+            reduceLife: function(){
+                this.lifes--;
+            },
+            gameOver: function(){
+                return (this.lifes < 0) ? true : false;
+            }
+        }
+        
         
         return{
             Bird: function(ctx){return new _Bird(ctx)},
-            Columns: function(ctx){return new _Columns(ctx)}
+            Columns: function(ctx){return new _Columns(ctx)},
+            Game: function(){return _Game}
         }
-    
-    
-    
+        
+        
+        
     })()
     
     

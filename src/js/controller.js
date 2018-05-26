@@ -14,9 +14,11 @@
         
             col_arr = [],
             bird = null,
+            game = null,
 
             frame_divisor = 200,
             frame_count = 0,
+            raf = null,
 
             pressed = false,
             collided = false;
@@ -48,11 +50,8 @@
                         return true;
                         
                     }
-                
                 }
             }
-               
-            
         }
         
         function setConfig(){
@@ -78,12 +77,19 @@
             //render bird
             bird.draw(ctx);
             bird.move();
-
+   
             //render columns
             for(var i = col_arr.length - 1; i > -1; i--){
                 col_arr[i].draw(ctx);
                 col_arr[i].move();
             }
+            
+            //game over?
+            if(!game.gameOver()){
+                requestAnimationFrame(render);
+            }else{
+                cancelAnimationFrame(raf);
+            } 
 
             //new column
             if(frame_count % frame_divisor == 0){
@@ -104,13 +110,15 @@
             if(!collided && check_colision()){
                 collided = true;
                 bird.color = "green";
+                game.reduceLife();
                 setTimeout(function(){
                     bird.color = "blue";
                     collided = false;
                 },1500);
             };
-
-            requestAnimationFrame(render);
+            
+            
+               
         }   
         
         
@@ -130,11 +138,13 @@
             setConfig();
             
             //instances
+            
             bird = global.model.Bird(ctx);
             col_arr.push(global.model.Columns(ctx));
-            
+            game = global.model.Game();
+                        
             //start rendering
-            requestAnimationFrame(render);
+            raf = requestAnimationFrame(render);
         }
         
                 
