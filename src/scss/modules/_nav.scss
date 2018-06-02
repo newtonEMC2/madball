@@ -1,0 +1,85 @@
+//$tabs__color: darken(white, 5%);
+//$nav__color: #333;
+//$background__hover: rgba(darken(white,10%),.3);
+//$border__color: rgba(darken(white,10%),.3);
+//
+///**************************************
+//    header nav
+//***************************************/
+//
+//.nav{
+//        
+//    transition: transform 1s ease;
+//    background: $nav__color;
+//    text-transform: uppercase;
+//    
+//    @include mq(s){
+//        width: 100%;
+//        height: 100vh;
+//        opacity: .98;
+//    }
+//    
+//    @include mq(m){
+//        background: transparent;
+//        @include flexy($disp: flex);
+//    }
+//    
+//    &-items{
+//        color: $tabs__color;
+//        
+//        @include mq(s){
+//            border-bottom: 1px solid $border__color;
+//            display: block;
+//            padding: 0 rem(15px);
+//            line-height: 3;
+//            
+//            
+//            &:first-child{
+//                border-top: 10px solid $border__color;
+//            }
+//        }
+//        
+//        @include mq(m){
+//            padding: 0 rem(4px);
+//            margin: 0 0 0 rem(20px);
+//            line-height: 2;
+//        }
+//    }
+//}
+//
+////animation on tabs in the header////////////////
+//.nav-tab{
+//    
+//    @include mq(s){
+//        &:hover{
+//            background: $background__hover;
+//        }
+//    }
+//    
+//    @include mq(m){
+//        position: relative;
+//        
+//        &::before{
+//            content: "";
+//            display: block;
+//            width: 0%;
+//            height: 10%;
+//            position: absolute;
+//            background: rgba(darken(white, 5%), .3);
+//            left: 50%;
+//            bottom: 0;
+//            border-radius: 10%;
+//            transition: width .3s ease-in-out,
+//                        left  .3s ease-in-out;
+//        }   
+//        
+//        &:hover::before{
+//            width: 100%;
+//            left: 0;
+//        }
+//        
+//        &:active{
+//            transform: scale(0.95);
+//        }
+//    }
+//}

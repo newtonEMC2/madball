@@ -1,0 +1,43 @@
+$toggle-bckgrnd: darken(white, 5%);
+
+@include mq(s){
+    
+    %inside-bars{
+        width: 80%;
+        height: rem(4px);
+        background: $toggle-bckgrnd;
+        border-radius: rem(4px);
+        transition: all 1s;
+    }
+    
+    %pseudo{
+        content: "";
+        display: block;
+        position: relative;
+    }
+    
+    .pageHeader__toggle{
+        width: rem(35px);
+        height: rem(35px);
+        border: $toggle-bckgrnd 3px solid;
+        border-radius: rem(4px);
+        z-index: 100;
+        
+        @include flexy($disp: flex, $dir: column, $wrap: wrap, $just: center , $alig: center);
+        
+        &-el{
+            @extend %inside-bars;
+            margin: rem(4px) 0;
+        }
+            
+        &:before{
+            @extend %pseudo;
+            @extend %inside-bars;
+        }
+        
+        &:after{
+            @extend %pseudo;
+            @extend %inside-bars;
+        }
+    }
+}

@@ -1,5 +1,3 @@
 .l-equidistant{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flexy($disp: flex, $just: space-between , $alig: center);
 }
