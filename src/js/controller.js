@@ -9,7 +9,8 @@
         //////////////////////////////////
         
         //DOM cache
-        var ctx = null,
+        var cnv = null,
+            ctx = null,
             canvas_w = null,
             canvas_h = null,
             
@@ -46,6 +47,13 @@
         //////////////////////////////////
         //  functions 
         //////////////////////////////////
+        
+        function setStageSize(){
+            cnv.width = global.config.getCnvWidth();
+            cnv.height = global.config.getCnvHeight();
+        }
+            
+        
         function check_colision(){
             for(var i = col_arr.length - 1; i > -1; i--){
                 if(bird.x + bird.radius >= col_arr[i].x &&
@@ -138,11 +146,12 @@
         //////////////////////////////////
         //  init
         //////////////////////////////////
-        window.onload = function(){
+        document.addEventListener("DOMContentLoaded", function(){
             /* to keep this order is important*/
             
             //set variables on the controller so the rendering method does not
             //have to go and get them every time is rendered
+            cnv = global.config.getCnv();
             ctx = global.config.getContext();
             canvas_w = global.config.getCnvWidth();
             canvas_h = global.config.getCnvHeight();
@@ -150,19 +159,21 @@
             
             //ui
             
+            //set stage size
+            setStageSize();
+            
             
             //check db and retrieve custimized config if there is any
             setConfigOnDB();
             
             //instances
-            
             bird = global.model.Bird(ctx);
             col_arr.push(global.model.Columns(ctx));
             game = global.model.Game();
                         
             //start rendering
             raf = requestAnimationFrame(render);
-        }
+        });
         
                 
     

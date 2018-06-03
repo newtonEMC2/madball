@@ -7,12 +7,12 @@
         function _Bird(ctx){
             
             this.canvas_h = global.config.getCnvHeight(),
-            this.x = global.config.Xo,
-            this.y = global.config.Yo,
+            this.x = global.config.getXo(),
+            this.y = global.config.getYo(),
             this.dx = 0,
             this.dy = 0,
             this.g = global.config.getGravity(),
-            this.radius = global.config.ball_radius,
+            this.radius = global.config.getBallRadius(),
             this.color = global.config.getBallColor(),
 
             this.draw = function(ctx){
@@ -44,7 +44,7 @@
         function _Columns(ctx){
             this.canvas_h = global.config.getCnvHeight(),
             this.x = global.config.getCnvWidth(),
-            this.col_w = 20;
+            this.col_w = global.config.getColumnsWidth(),
             this.top_section = __.random(this.canvas_h*.2, this.canvas_h*.7),
             this.gap = __.random(this.canvas_h*.15, this.canvas_h*.30),
             this.color = global.config.getColumnsColor(),

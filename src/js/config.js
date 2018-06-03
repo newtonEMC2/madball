@@ -8,11 +8,23 @@
         //  variables  
         //////////////////////////////////
         
+        //screen sizes
+        var phone_screen = 461,
+            tablet_screen = 721,
+            resolution_factor = 0.78;
+        
+        //stage
+        var w_for_phone = 318,
+            w_for_tablet = 455,
+            w_for_desktop = 680,
+            
+            w_basis_factor = 350;
+                
         //DOM cache
         var cnv = document.getElementById("canvas"),
             ctx = cnv.getContext('2d'),
-            canvas_w = cnv.width,
-            canvas_h = cnv.height,
+            canvas_w = setStageSize(),
+            canvas_h = canvas_w / resolution_factor,
         
             lifeCouter = document.getElementsByClassName("infoPanel__lifes")[0];
         
@@ -24,10 +36,43 @@
             initial_position_Y = canvas_h / 2;
         
         //column
-        var columns_color = "white";
+        var columns_color = "white",
+            col_w = 20;
         
         //game
         var lifes = 2;
+        
+        
+        //////////////////////////////////
+        //  functions 
+        //////////////////////////////////
+        
+        function setStageSize(){
+            if(window.matchMedia( "(min-width: " + tablet_screen + "px )" ).matches){
+                return w_for_desktop;
+            }
+            else if(window.matchMedia( "(min-width: " + phone_screen + "px )" ).matches){
+                return w_for_tablet;
+            }
+            else{
+                return w_for_phone;
+            }
+        }
+        
+        function setBallRadius(){
+            if(window.matchMedia( "(min-width: " + tablet_screen + "px )" ).matches){
+                console.log("desktop");
+                return w_for_desktop;
+            }
+            else if(window.matchMedia( "(min-width: " + phone_screen + "px )" ).matches){
+                console.log("tablet");
+                return w_for_tablet;
+            }
+            else{
+                console.log("phone");
+                return w_for_phone;
+            }
+        }
         
         
         //////////////////////////////////
@@ -35,6 +80,10 @@
         //////////////////////////////////
         
         //DOM
+        
+        function getCnv(){
+            return cnv;
+        }
         
         function getContext(){
             return ctx;
@@ -54,6 +103,10 @@
         
         //ball
         
+        function getBallRadius(){
+            return ball_radius;
+        }
+        
         function getBallColor(){
             return ball_color;
         }
@@ -62,13 +115,26 @@
             return gravity;
         }
         
+        function getXo(){
+            return initial_position_X;
+        }
+        
+        function getYo(){
+            return initial_position_Y;
+        }
+        
         //Columns
         
         function getColumnsColor(){
             return columns_color;
         }
         
+        function getColumnsWidth(){
+            return col_w;
+        }
+        
         //game
+        
         function getLifes(){
             return lifes;
         }
@@ -81,26 +147,30 @@
             gravity = val;
         }
         
+        function setBallColor(color){
+            ball_color = color;
+        }
+        
         
         //////////////////////////////////
         //  return visible elements
         //////////////////////////////////
         return {
             //getters
-            ball_radius: ball_radius,
-            ball_color: ball_color,
-            Xo: initial_position_X,
-            Yo: initial_position_Y,
-            
+            getCnv: getCnv,
             getContext: getContext,
             getCnvHeight: getCnvHeight,
             getCnvWidth: getCnvWidth,
             getLifeCounter: getLifeCounter,
             
+            getXo: getXo,
+            getYo: getYo,
+            getBallRadius: getBallRadius,
             getBallColor: getBallColor,
             getGravity: getGravity,
             
             getColumnsColor: getColumnsColor,
+            getColumnsWidth: getColumnsWidth,
             
             getLifes: getLifes,
             
