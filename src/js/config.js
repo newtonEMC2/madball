@@ -18,7 +18,7 @@
             w_for_tablet = 455,
             w_for_desktop = 680,
             
-            w_basis_factor = 350;
+            w_basis_factor = 340;
                 
         //DOM cache
         var cnv = document.getElementById("canvas"),
@@ -29,7 +29,7 @@
             lifeCouter = document.getElementsByClassName("infoPanel__lifes")[0];
         
         //ball
-        var ball_radius = 15,
+        var ball_radius = 15 * canvas_w / w_basis_factor,
             ball_color = "blue",
             gravity = .1,
             initial_position_X = canvas_w / 2,
@@ -37,7 +37,11 @@
         
         //column
         var columns_color = "white",
-            col_w = 20;
+            col_w = 20 * canvas_w / w_basis_factor,
+            gap_top_min = 0,
+            gap_top_max = .65,
+            gap_h_min = .20,
+            gap_h_max = .35;
         
         //game
         var lifes = 2;
@@ -59,22 +63,7 @@
             }
         }
         
-        function setBallRadius(){
-            if(window.matchMedia( "(min-width: " + tablet_screen + "px )" ).matches){
-                console.log("desktop");
-                return w_for_desktop;
-            }
-            else if(window.matchMedia( "(min-width: " + phone_screen + "px )" ).matches){
-                console.log("tablet");
-                return w_for_tablet;
-            }
-            else{
-                console.log("phone");
-                return w_for_phone;
-            }
-        }
-        
-        
+                
         //////////////////////////////////
         //  getters 
         //////////////////////////////////
@@ -133,6 +122,22 @@
             return col_w;
         }
         
+        function getGapTopMin(){
+            return gap_top_min;
+        }
+        
+        function getGapTopMax(){
+            return gap_top_max;
+        }
+        
+        function getGapHeightMin(){
+            return gap_h_min;
+        }
+        
+        function getGapHeightMax(){
+            return gap_h_max;
+        }
+        
         //game
         
         function getLifes(){
@@ -147,8 +152,14 @@
             gravity = val;
         }
         
+        //set colors
+        
         function setBallColor(color){
             ball_color = color;
+        }
+        
+        function setColumnsColor(color){
+            columns_color = color;   
         }
         
         
@@ -171,12 +182,18 @@
             
             getColumnsColor: getColumnsColor,
             getColumnsWidth: getColumnsWidth,
+            getGapTopMin: getGapTopMin,
+            getGapTopMax: getGapTopMax,
+            getGapHeightMin: getGapHeightMin,
+            getGapHeightMax: getGapHeightMax,
             
             getLifes: getLifes,
             
             
             //setters
-            setGravity: setGravity
+            setGravity: setGravity,
+            setBallColor: setBallColor,
+            setColumnsColor: setColumnsColor
         }
         
         

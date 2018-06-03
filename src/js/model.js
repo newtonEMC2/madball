@@ -45,17 +45,16 @@
             this.canvas_h = global.config.getCnvHeight(),
             this.x = global.config.getCnvWidth(),
             this.col_w = global.config.getColumnsWidth(),
-            this.top_section = __.random(this.canvas_h*.2, this.canvas_h*.7),
-            this.gap = __.random(this.canvas_h*.15, this.canvas_h*.30),
+            this.gap_top = __.random(this.canvas_h * global.config.getGapTopMin(), this.canvas_h * global.config.getGapTopMax()),
+            this.gap_h = __.random(this.canvas_h * global.config.getGapHeightMin(), this.canvas_h * global.config.getGapHeightMax()),
             this.color = global.config.getColumnsColor(),
 
             this.draw = function(ctx){
                 ctx.beginPath();
-                ctx.rect(this.x, 0, this.col_w, this.top_section);
-                ctx.rect(this.x, this.top_section + this.gap, this.col_w, this.canvas_h);
+                ctx.rect(this.x, 0, this.col_w, this.gap_top);
+                ctx.rect(this.x, this.gap_top + this.gap_h, this.col_w, this.canvas_h);
                 ctx.fillStyle = this.color;
                 ctx.fill();
-                
             }
 
             this.move = function(){

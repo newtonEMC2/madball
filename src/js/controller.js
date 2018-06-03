@@ -31,18 +31,25 @@
         //////////////////////////////////
         //  events 
         ////////////////////////////////// 
-        document.onkeydown = function(e){
-            if(e.keyCode == 32 && !pressed) {
-                bird.jump();
-                pressed = true;
+        
+        function fireEvents(){
+            
+            document.onkeydown = function(e){
+                if(e.keyCode == 32 && !pressed) {//bar space
+                    bird.jump();
+                    pressed = true;
+                }
             }
+        
+            document.onkeyup = function(e){
+                pressed = false;
+            }
+        
+            cnv.onclick = function(e){
+                bird.jump();
+            }
+            
         }
-        
-        document.onkeyup = function(e){
-            pressed = false;
-        }
-        
-        
         
         //////////////////////////////////
         //  functions 
@@ -59,8 +66,8 @@
                 if(bird.x + bird.radius >= col_arr[i].x &&
                    bird.x + bird.radius <= col_arr[i].x + col_arr[i].col_w
                    ){
-                    if(bird.y - bird.radius <= col_arr[i].top_section ||
-                       bird.y + bird.radius >= col_arr[i].top_section + col_arr[i].gap){
+                    if(bird.y - bird.radius <= col_arr[i].gap_top ||
+                       bird.y + bird.radius >= col_arr[i].gap_top + col_arr[i].gap_h){
                         return true;
                         
                     }
@@ -157,7 +164,13 @@
             canvas_h = global.config.getCnvHeight();
             lifeCounter = global.config.getLifeCounter();
             
-            //ui
+            //instances
+            bird = global.model.Bird(ctx);
+            col_arr.push(global.model.Columns(ctx));
+            game = global.model.Game();
+            
+            //fire events
+            fireEvents();
             
             //set stage size
             setStageSize();
@@ -166,11 +179,7 @@
             //check db and retrieve custimized config if there is any
             setConfigOnDB();
             
-            //instances
-            bird = global.model.Bird(ctx);
-            col_arr.push(global.model.Columns(ctx));
-            game = global.model.Game();
-                        
+                                    
             //start rendering
             raf = requestAnimationFrame(render);
         });
