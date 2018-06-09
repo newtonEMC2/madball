@@ -25,9 +25,9 @@
             frame_count = 0,
             raf = null,
         
-        //game
-            pressed = false,
-            collided = false;
+        //ui
+            pressed = false;
+            
             
 
         //////////////////////////////////
@@ -52,7 +52,13 @@
             }
         
             cnv.onclick = function(e){
-                bird.jump();
+                if(game.started){ 
+                    bird.jump()
+                }
+                else{
+                    game.start(); 
+                    raf = requestAnimationFrame(render);
+                }
             }
             
         }
@@ -132,13 +138,13 @@
             bird.bounce_off(); 
             
             //check up for collision with columns
-            if(!collided && check_colision()){
-                collided = true;
+            if(!game.collided && check_colision()){
+                game.collided = true;
                 bird.color = "green";
                 game.reduceLife();
                 setTimeout(function(){
                     bird.color = "blue";
-                    collided = false;
+                    game.collided = false;
                 },1500);
             };
             

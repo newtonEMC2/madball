@@ -63,6 +63,7 @@
         }
         
         var _Game = {
+            collided: false,
             started: false,
             lifes: global.config.getLifes(),
             
@@ -76,6 +77,10 @@
             
             start: function(){
                 this.started = true;
+            },
+            
+            end: function(){
+                this.started = false;
             }
         }
         
