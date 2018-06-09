@@ -63,12 +63,19 @@
         }
         
         var _Game = {
+            started: false,
             lifes: global.config.getLifes(),
+            
             reduceLife: function(){
                 this.lifes--;
             },
+            
             gameOver: function(){
                 return (this.lifes < 0) ? true : false;
+            },
+            
+            start: function(){
+                this.started = true;
             }
         }
         

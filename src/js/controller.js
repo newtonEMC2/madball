@@ -16,7 +16,7 @@
             
             lifeCounter = null,
             
-            //instances cache
+        //instances cache
             col_arr = [],
             bird = null,
             game = null,
@@ -24,9 +24,11 @@
             frame_divisor = 200,
             frame_count = 0,
             raf = null,
-
+        
+        //game
             pressed = false,
             collided = false;
+            
 
         //////////////////////////////////
         //  events 
@@ -35,9 +37,13 @@
         function fireEvents(){
             
             document.onkeydown = function(e){
-                if(e.keyCode == 32 && !pressed) {//bar space
+                if(e.keyCode == 32 && !pressed && game.started) {//bar space
                     bird.jump();
                     pressed = true;
+                }
+                else if(e.keyCode == 32 && !pressed && !game.started){
+                    game.start();
+                    raf = requestAnimationFrame(render);
                 }
             }
         
@@ -140,7 +146,7 @@
             uiLifesUpdate();
             
             //game over?
-            if(!game.gameOver()){
+            if(!game.gameOver() && game.started){
                 requestAnimationFrame(render);
             }else{
                 cancelAnimationFrame(raf);
@@ -169,9 +175,6 @@
             col_arr.push(global.model.Columns(ctx));
             game = global.model.Game();
             
-            //fire events
-            fireEvents();
-            
             //set stage size
             setStageSize();
             
@@ -179,9 +182,11 @@
             //check db and retrieve custimized config if there is any
             setConfigOnDB();
             
-                                    
-            //start rendering
-            raf = requestAnimationFrame(render);
+            //first rendering
+            render();
+            
+            //fire events
+            fireEvents();
         });
         
                 
