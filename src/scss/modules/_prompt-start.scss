@@ -1,0 +1,21 @@
+$background: rgba(blue, .9);
+
+
+.template{
+    
+    position: relative;
+    background: green;
+    
+    &__prompt-start{
+        background: $background;
+        text-align: center;
+        display: block;
+        width: 80%;
+        line-height: 5rem;
+        position: absolute;
+        margin: auto;
+        top: 10%;
+        left: 0;
+        right: 0;
+    }
+}

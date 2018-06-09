@@ -43,6 +43,7 @@
                 }
                 else if(e.keyCode == 32 && !pressed && !game.started){
                     game.start();
+                    game.hidePromptStart();
                     raf = requestAnimationFrame(render);
                 }
             }
@@ -57,6 +58,7 @@
                 }
                 else{
                     game.start(); 
+                    game.hidePromptStart();
                     raf = requestAnimationFrame(render);
                 }
             }
@@ -190,6 +192,9 @@
             
             //first rendering
             render();
+            
+            //show popup before starting
+            game.showPromptStart();
             
             //fire events
             fireEvents();

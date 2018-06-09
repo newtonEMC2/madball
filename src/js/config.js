@@ -26,7 +26,9 @@
             canvas_w = setStageSize(),
             canvas_h = canvas_w / resolution_factor,
         
-            lifeCouter = document.getElementsByClassName("infoPanel__lifes")[0];
+            lifeCouter = document.getElementsByClassName("infoPanel__lifes")[0],
+        
+            prompt_start = document.getElementsByClassName("template__prompt-start")[0];
         
         //ball
         var ball_radius = 15 * canvas_w / w_basis_factor,
@@ -88,6 +90,10 @@
         
         function getLifeCounter(){
             return lifeCouter;
+        }
+        
+        function getPromptStart(){
+            return prompt_start;
         }
         
         //ball
@@ -173,6 +179,7 @@
             getCnvHeight: getCnvHeight,
             getCnvWidth: getCnvWidth,
             getLifeCounter: getLifeCounter,
+            getPromptStart: getPromptStart,
             
             getXo: getXo,
             getYo: getYo,

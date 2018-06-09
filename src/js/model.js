@@ -66,6 +66,7 @@
             collided: false,
             started: false,
             lifes: global.config.getLifes(),
+            prompt_start: global.config.getPromptStart(),
             
             reduceLife: function(){
                 this.lifes--;
@@ -77,6 +78,14 @@
             
             start: function(){
                 this.started = true;
+            },
+            
+            showPromptStart: function(){
+                this.prompt_start.classList.remove("is-hidden");
+            },
+            
+            hidePromptStart: function(){
+                this.prompt_start.classList.add("is-hidden");
             },
             
             end: function(){
@@ -94,9 +103,6 @@
         
         
     })()
-    
-    
-    
     
     
     global.model = model;
