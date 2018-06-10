@@ -76,6 +76,13 @@ gulp.task("JS", () => {
     .pipe(browserSync.stream())
 })
 
+//img
+gulp.task("ASSETS", () => {
+    return gulp.src("src/assets/*.{PNG,svg,jpg,png,gif}")
+    .pipe(gulp.dest("dist/assets"))
+    .pipe(browserSync.stream())
+})
+
 
 
 /////////////////////////
@@ -86,6 +93,7 @@ gulp.task("Watcher", () => {
     gulp.watch("src/scss/**/*.scss", ["Sass"]);
     gulp.watch("src/**/*.html", ["HTML"]);
     gulp.watch("src/**/*.js", ["JS"]);
+    gulp.watch("src/assets/*.{PNG,svg,jpg,png,gif}", ["IMG"]);
 });
 
 
@@ -96,6 +104,7 @@ gulp.task("Watcher", () => {
 gulp.task("default", ["Sass",
                       "HTML",
                       "JS",
+                      "ASSETS",
                       "BrowserSync",
                       "Watcher"]
 );

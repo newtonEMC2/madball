@@ -13,7 +13,6 @@
             background: #333;
             display: block;
             margin: auto;
-            
         }
     </style>
 </head>
@@ -39,6 +38,10 @@
     
     <div class="template">
         <canvas width="" height="" id="canvas"></canvas>
+        <span class="template__info-lifes">
+            <img src="assets/heart.svg" alt="icon-heart" class="template__icon-heart">
+        </span>
+        <span class="template__info-clock">0:00:0</span>
         <p class="template__prompt-start is-hidden">
             touch or click space bar to start up!!
         </p>
@@ -46,13 +49,7 @@
     
     
     
-    <section class="infoPanel">
-        <div class="l-wrapper-basic l-c-padded-1">
-            <span class="infoPanel__lifes"></span>
-            
-        </div>
-        
-    </section>
+    
 
 <script src="js/app.min.js"></script>
 

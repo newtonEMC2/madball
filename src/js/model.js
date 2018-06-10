@@ -4,7 +4,7 @@
 
     var model = (function(){
     
-        function _Bird(ctx){
+        function Bird(ctx){
             
             this.canvas_h = global.config.getCnvHeight(),
             this.x = global.config.getXo(),
@@ -41,7 +41,7 @@
             }
         }
 
-        function _Columns(ctx){
+        function Columns(ctx){
             this.canvas_h = global.config.getCnvHeight(),
             this.x = global.config.getCnvWidth(),
             this.col_w = global.config.getColumnsWidth(),
@@ -62,10 +62,15 @@
             }
         }
         
-        var _Game = {
+        var Game = {
             collided: false,
             started: false,
             lifes: global.config.getLifes(),
+            clock: global.config.getClock(),
+            setInterval: null,
+            d: 0,
+            s: 0,
+            m: 0,
             prompt_start: global.config.getPromptStart(),
             
             reduceLife: function(){
@@ -90,14 +95,26 @@
             
             end: function(){
                 this.started = false;
+            },
+            
+            startClock: function(){
+                var _this = this;
+                _this.setInterval = setInterval(function(){
+                    _this.d++;
+                    if(_this.d > 9){_this.d = 0; _this.s++}
+                    if(_this.s > 59){_this.s = 0; _this.m++}
+                    _this.clock.innerHTML = "" + _this.m + ":0" + _this.s + ":" + _this.d;
+                    
+                }, 100)
+                
             }
         }
         
         
         return{
-            Bird: function(ctx){return new _Bird(ctx)},
-            Columns: function(ctx){return new _Columns(ctx)},
-            Game: function(){return _Game}
+            Bird: function(ctx){return new Bird(ctx)},
+            Columns: function(ctx){return new Columns(ctx)},
+            Game: function(){return Game}
         }
         
         

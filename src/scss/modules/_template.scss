@@ -1,0 +1,46 @@
+$background: rgba(blue, .9);
+
+
+%info{
+    position: absolute;
+    left: rem(5px);
+    font-weight: bold;
+    color: white;
+}
+
+.template{
+    
+    position: relative;
+    margin: auto;
+    
+    &__info-lifes{
+        @include flexy($disp: flex, $alig: center);
+        @extend %info;
+        top: rem(5px);
+                
+        & > .template__icon-heart{
+            width: rem(20px);
+            height: auto;
+            margin-left: rem(5px);
+        }
+    }
+    
+    &__info-clock{
+        @extend %info;
+        bottom: rem(5px);
+        
+    }
+        
+    &__prompt-start{
+        background: $background;
+        text-align: center;
+        display: block;
+        width: 80%;
+        line-height: rem(50px);
+        position: absolute;
+        margin: auto;
+        top: 10%;
+        left: 0;
+        right: 0;
+    }
+}

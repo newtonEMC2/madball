@@ -24,10 +24,16 @@
         var cnv = document.getElementById("canvas"),
             ctx = cnv.getContext('2d'),
             canvas_w = setStageSize(),
-            canvas_h = canvas_w / resolution_factor,
-        
-            lifeCouter = document.getElementsByClassName("infoPanel__lifes")[0],
-        
+            canvas_h = Math.floor(canvas_w / resolution_factor),
+            
+            template = document.getElementsByClassName("template")[0],
+            template_w = canvas_w,
+            template_h = canvas_h,
+            
+            lifeCouter = document.getElementsByClassName("template__info-lifes")[0],
+            heartIcon = document.getElementsByClassName("template__icon-heart")[0],
+            clock = document.getElementsByClassName("template__info-clock")[0],
+            
             prompt_start = document.getElementsByClassName("template__prompt-start")[0];
         
         //ball
@@ -88,8 +94,28 @@
             return canvas_h;
         }
         
+        function getTemplate(){
+            return template;
+        }
+        
+        function getTemplateWidth(){
+            return template_w;
+        }
+        
+        function getTemplateHeight(){
+            return template_h;
+        }
+        
         function getLifeCounter(){
             return lifeCouter;
+        }
+        
+        function getHeartIcon(){
+            return heartIcon;
+        }
+        
+        function getClock(){
+            return clock;
         }
         
         function getPromptStart(){
@@ -178,7 +204,12 @@
             getContext: getContext,
             getCnvHeight: getCnvHeight,
             getCnvWidth: getCnvWidth,
+            getTemplate: getTemplate,
+            getTemplateWidth: getTemplateWidth,
+            getTemplmateHeight: getTemplateHeight,
             getLifeCounter: getLifeCounter,
+            getHeartIcon: getHeartIcon,
+            getClock: getClock,
             getPromptStart: getPromptStart,
             
             getXo: getXo,

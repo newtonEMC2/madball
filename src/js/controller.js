@@ -14,7 +14,10 @@
             canvas_w = null,
             canvas_h = null,
             
+            template = null,
             lifeCounter = null,
+            heartIcon = null,
+            
             
         //instances cache
             col_arr = [],
@@ -44,6 +47,7 @@
                 else if(e.keyCode == 32 && !pressed && !game.started){
                     game.start();
                     game.hidePromptStart();
+                    game.startClock();
                     raf = requestAnimationFrame(render);
                 }
             }
@@ -59,6 +63,7 @@
                 else{
                     game.start(); 
                     game.hidePromptStart();
+                    game.startClock();
                     raf = requestAnimationFrame(render);
                 }
             }
@@ -72,6 +77,8 @@
         function setStageSize(){
             cnv.width = global.config.getCnvWidth();
             cnv.height = global.config.getCnvHeight();
+            template.style.width = global.config.getTemplateWidth() + "px";
+            template.style.height = global.config.getTemplmateHeight() + "px";
         }
             
         
@@ -89,6 +96,7 @@
             }
         }
         
+                
         function setConfigOnDB(){
             if (!localStorage.getItem("config")){
                 localStorage.setItem("config", "{}");
@@ -100,8 +108,8 @@
         }
         
         function uiLifesUpdate(){
-            if(game.lifes != -1){lifeCounter.innerHTML = game.lifes}
-            else{lifeCounter.innerHTML = 0}
+            if(game.lifes != -1){lifeCounter.innerHTML = game.lifes + heartIcon.outerHTML}
+            else{lifeCounter.innerHTML = 0 + heartIcon.outerHTML}
         }
         
                 
@@ -176,7 +184,9 @@
             ctx = global.config.getContext();
             canvas_w = global.config.getCnvWidth();
             canvas_h = global.config.getCnvHeight();
+            template = global.config.getTemplate();
             lifeCounter = global.config.getLifeCounter();
+            heartIcon = global.config.getHeartIcon();
             
             //instances
             bird = global.model.Bird(ctx);
@@ -186,18 +196,21 @@
             //set stage size
             setStageSize();
             
+            //first rendering
+            render();
+            
             
             //check db and retrieve custimized config if there is any
             setConfigOnDB();
             
-            //first rendering
-            render();
-            
+                        
             //show popup before starting
             game.showPromptStart();
             
             //fire events
             fireEvents();
+            
+            
         });
         
                 
