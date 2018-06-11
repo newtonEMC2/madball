@@ -1,4 +1,5 @@
-$background: rgba(blue, .9);
+$background-prompt-start: rgba(blue, .9);
+$background-prompt-end: rgba(red, .9);
 
 
 %info{
@@ -6,6 +7,18 @@ $background: rgba(blue, .9);
     left: rem(5px);
     font-weight: bold;
     color: white;
+}
+
+%prompt{
+    text-align: center;
+    display: block;
+    width: 80%;
+    line-height: rem(50px);
+    position: absolute;
+    margin: auto;
+    top: 10%;
+    left: 0;
+    right: 0;
 }
 
 .template{
@@ -32,7 +45,7 @@ $background: rgba(blue, .9);
     }
         
     &__prompt-start{
-        background: $background;
+        background: $background-prompt-start;
         text-align: center;
         display: block;
         width: 80%;
@@ -42,5 +55,10 @@ $background: rgba(blue, .9);
         top: 10%;
         left: 0;
         right: 0;
+    }
+    
+    &__prompt-end{
+        background: $background-prompt-end;
+        @extend %prompt;
     }
 }

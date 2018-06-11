@@ -44,12 +44,15 @@
                     bird.jump();
                     pressed = true;
                 }
-                else if(e.keyCode == 32 && !pressed && !game.started){
-                    game.start();
-                    game.hidePromptStart();
-                    game.startClock();
-                    raf = requestAnimationFrame(render);
-                }
+                else{
+                    if(e.keyCode == 32 && !pressed && !game.started && !game.gameOver()){
+                        game.start();
+                        raf = requestAnimationFrame(render);
+                    }
+                    else if(e.keyCode == 32 && !pressed && !game.started && game.gameOver()){
+                        location.reload(); 
+                    }
+                } 
             }
         
             document.onkeyup = function(e){
@@ -61,10 +64,14 @@
                     bird.jump()
                 }
                 else{
-                    game.start(); 
-                    game.hidePromptStart();
-                    game.startClock();
-                    raf = requestAnimationFrame(render);
+                    if(game.gameOver()){
+                        location.reload();
+                    }
+                    else{
+                        game.start(); 
+                        raf = requestAnimationFrame(render);
+                    }
+                    
                 }
             }
             
@@ -164,7 +171,9 @@
             //game over?
             if(!game.gameOver() && game.started){
                 requestAnimationFrame(render);
-            }else{
+            }
+            else if(game.gameOver() && game.started){
+                game.end();
                 cancelAnimationFrame(raf);
             } 
             

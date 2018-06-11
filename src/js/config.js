@@ -34,7 +34,8 @@
             heartIcon = document.getElementsByClassName("template__icon-heart")[0],
             clock = document.getElementsByClassName("template__info-clock")[0],
             
-            prompt_start = document.getElementsByClassName("template__prompt-start")[0];
+            prompt_start = document.getElementsByClassName("template__prompt-start")[0],
+            prompt_end = document.getElementsByClassName("template__prompt-end")[0];
         
         //ball
         var ball_radius = 15 * canvas_w / w_basis_factor,
@@ -120,6 +121,10 @@
         
         function getPromptStart(){
             return prompt_start;
+        }
+        
+        function getPromptEnd(){
+            return prompt_end;
         }
         
         //ball
@@ -211,6 +216,7 @@
             getHeartIcon: getHeartIcon,
             getClock: getClock,
             getPromptStart: getPromptStart,
+            getPromptEnd: getPromptEnd,
             
             getXo: getXo,
             getYo: getYo,

@@ -72,6 +72,7 @@
             s: 0,
             m: 0,
             prompt_start: global.config.getPromptStart(),
+            prompt_end: global.config.getPromptEnd(),
             
             reduceLife: function(){
                 this.lifes--;
@@ -83,30 +84,41 @@
             
             start: function(){
                 this.started = true;
+                this._hidePromptStart();
+                this._startClock();
             },
             
             showPromptStart: function(){
                 this.prompt_start.classList.remove("is-hidden");
             },
             
-            hidePromptStart: function(){
+            _hidePromptStart: function(){
                 this.prompt_start.classList.add("is-hidden");
+            },
+            
+            _showPromptEnd: function(){
+                this.prompt_end.classList.remove("is-hidden");
             },
             
             end: function(){
                 this.started = false;
+                this._stopClock();
+                this._showPromptEnd();
             },
             
-            startClock: function(){
+            _startClock: function(){
                 var _this = this;
                 _this.setInterval = setInterval(function(){
                     _this.d++;
                     if(_this.d > 9){_this.d = 0; _this.s++}
                     if(_this.s > 59){_this.s = 0; _this.m++}
-                    _this.clock.innerHTML = "" + _this.m + ":0" + _this.s + ":" + _this.d;
+                    _this.clock.innerHTML = "" + _this.m + ((_this.s > 9) ? ":" : ":0") + _this.s + ":" + _this.d;
                     
                 }, 100)
-                
+            },
+            
+            _stopClock: function(){
+                clearInterval(this.setInterval);
             }
         }
         
