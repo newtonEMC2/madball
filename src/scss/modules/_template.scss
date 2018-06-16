@@ -47,13 +47,14 @@ $background-prompt-end: rgba(red, .9);
     }
     
     &__panel{
-        @include flexy($disp: flex, $just: flex-end);
+        @include flexy($disp: flex, $just: flex-end, $alig: center);
         position: relative;
         padding: rem(8px) 0;
         z-index: 200;
                         
         & > .template__icon-minimize, & > .template__icon-fullscreen{
             width: rem(20px);
+            height: auto;
             margin: 0 rem(8px);
         }
     }

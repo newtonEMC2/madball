@@ -88,6 +88,14 @@ small {
   font-size: 80%;
 }
 
+/**
+ * IE does not support main but it does when apply diplay block.
+ */
+main{
+    display: block;
+}
+
+
 /* Embedded content
    ========================================================================== */
 
