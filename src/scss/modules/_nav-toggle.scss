@@ -25,7 +25,7 @@ $toggle-bckgrnd: darken(white, 5%);
         cursor: pointer;
         
         @include flexy($disp: flex, $dir: column, $wrap: wrap, $just: center , $alig: center);
-        
+                
         &-el{
             @extend %inside-bars;
             margin: rem(4px) 0;
