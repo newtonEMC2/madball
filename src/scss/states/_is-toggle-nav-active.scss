@@ -1,0 +1,21 @@
+@include mq(s){
+    
+    .pageHeader__toggle.is-toggle-nav-active{
+        
+        &::before{
+            position: absolute;
+            transform: rotateZ(45deg);
+        }
+
+        &::after{
+            position: absolute;
+            transform: rotateZ(-45deg);
+        }
+
+        & .pageHeader__toggle-el{
+            margin: 0;
+            opacity: 0;
+            height: 0;
+        }
+    }
+}

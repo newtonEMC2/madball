@@ -63,12 +63,14 @@ gulp.task("JS", () => {
     return gulp.src([
     //the same way we do with jquery, the libraries are called first.
     //The order in which de rest of the files are called in, is not relevant
-        "src/js/basicLibrary.js",
-        "src/js/config.js",
-        "src/js/db.js",
-        "src/js/model.js",
-        "src/js/controller.js"
+        "src/js/madball-app/basicLibrary.js",
+        "src/js/madball-app/config.js",
+        "src/js/madball-app/db.js",
+        "src/js/madball-app/model.js",
+        "src/js/madball-app/controller.js",
+        "src/js/madball-app/controller.js",
         
+        "src/js/ui.js"
     ])
     .pipe(concat("app.min.js"))
     .pipe(uglify())

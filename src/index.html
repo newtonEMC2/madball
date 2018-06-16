@@ -8,13 +8,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="css/application.css">
-    <style>
-        canvas{
-            background: #333;
-            display: block;
-            margin: auto;
-        }
-    </style>
+    
 </head>
 <body>
   
@@ -24,8 +18,19 @@
             <h1 class="pageHeader__title">MADBALL!</h1>
                         
             <nav class="pageHeader__nav">
-                <span class="pageHeader__nav-tab">rules</span>
-                <span class="pageHeader__nav-tab">preferences</span>
+               
+                <span class="pageHeader__nav-tab">
+                    <img src="assets/rules.svg" alt="" class="pageHeader__nav-icon">rules
+                </span>
+                
+                <span class="pageHeader__nav-tab">
+                    <img src="assets/config.svg" alt="" class="pageHeader__nav-icon">preferences
+                </span>
+                
+                <span class="pageHeader__nav-tab">
+                    <img src="assets/ranking.svg" alt="" class="pageHeader__nav-icon">best scores
+                </span>
+                
             </nav>
             
             <div class="pageHeader__toggle">
@@ -36,21 +41,37 @@
     </header>
     
     
-    <div class="template">
-        <canvas width="" height="" id="canvas"></canvas>
-        <span class="template__info-lifes">
-            <img src="assets/heart.svg" alt="icon-heart" class="template__icon-heart">
-        </span>
-        <span class="template__info-clock">0:00:0</span>
-        <p class="template__prompt-start is-hidden">
-            touch or click space bar to start up!!
-        </p>
-        <p class="template__prompt-end is-hidden">
-            game over :( Touch to start over.
-        </p>
-    </div>
+    <main class="l-c-padded-1">
+       <div class="template is-upfront">
+           
+            <canvas width="" height="" class="canvas"></canvas>
+            
+            <div class="template__overlay is-hidden"></div>
+            
+            <div class="template__panel">
+                <img src="assets/minimize.svg" alt="icon-minimize" class="template__icon-minimize is-hidden">
+                <img src="assets/fullscreen.svg" alt="icon-fullscreen" class="template__icon-fullscreen">                
+            </div>
+            
+            <span class="template__info-lifes">
+                <img src="assets/heart.svg" alt="icon-heart" class="template__icon-heart">
+            </span>
+            
+            <span class="template__info-clock">0:00:0</span>
+            
+            <p class="template__prompt-start is-hidden">
+                touch or click space bar to start up!!
+            </p>
+            
+            <p class="template__prompt-end is-hidden">
+                game over :( Touch to start over.
+            </p>
+            
+        </div>
+    </main>
     
     
+    <footer></footer>
     
     
 
@@ -58,9 +79,6 @@
 
 
 
-<script>
-    
-</script>
 
 </body>
 </html>

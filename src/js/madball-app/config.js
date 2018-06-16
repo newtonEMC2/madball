@@ -21,7 +21,7 @@
             w_basis_factor = 340;
                 
         //DOM cache
-        var cnv = document.getElementById("canvas"),
+        var cnv = document.getElementsByClassName("canvas")[0],
             ctx = cnv.getContext('2d'),
             canvas_w = setStageSize(),
             canvas_h = Math.floor(canvas_w / resolution_factor),
@@ -31,11 +31,16 @@
             template_h = canvas_h,
             
             lifeCouter = document.getElementsByClassName("template__info-lifes")[0],
-            heartIcon = document.getElementsByClassName("template__icon-heart")[0],
             clock = document.getElementsByClassName("template__info-clock")[0],
             
+            heartIcon = document.getElementsByClassName("template__icon-heart")[0],
+            fullscreenIcon = document.getElementsByClassName("template__icon-fullscreen")[0],
+            minimizeIcon = document.getElementsByClassName("template__icon-minimize")[0],
+            
             prompt_start = document.getElementsByClassName("template__prompt-start")[0],
-            prompt_end = document.getElementsByClassName("template__prompt-end")[0];
+            prompt_end = document.getElementsByClassName("template__prompt-end")[0],
+        
+            overlay = document.getElementsByClassName("template__overlay")[0];
         
         //ball
         var ball_radius = 15 * canvas_w / w_basis_factor,
@@ -115,6 +120,14 @@
             return heartIcon;
         }
         
+        function getMinimizeIcon(){
+            return minimizeIcon;
+        }
+        
+        function getFullscreenIcon(){
+            return fullscreenIcon;
+        }
+        
         function getClock(){
             return clock;
         }
@@ -125,6 +138,10 @@
         
         function getPromptEnd(){
             return prompt_end;
+        }
+        
+        function getOverlay(){
+            return overlay;
         }
         
         //ball
@@ -214,9 +231,12 @@
             getTemplmateHeight: getTemplateHeight,
             getLifeCounter: getLifeCounter,
             getHeartIcon: getHeartIcon,
+            getMinimizeIcon: getMinimizeIcon,
+            getFullscreenIcon: getFullscreenIcon,
             getClock: getClock,
             getPromptStart: getPromptStart,
             getPromptEnd: getPromptEnd,
+            getOverlay: getOverlay,
             
             getXo: getXo,
             getYo: getYo,

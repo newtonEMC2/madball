@@ -17,11 +17,12 @@ $toggle-bckgrnd: darken(white, 5%);
     }
     
     .pageHeader__toggle{
+        position: relative;
         width: rem(35px);
         height: rem(35px);
-        border: $toggle-bckgrnd 3px solid;
+        border: $toggle-bckgrnd rem(3px) solid;
         border-radius: rem(4px);
-        z-index: 100;
+        cursor: pointer;
         
         @include flexy($disp: flex, $dir: column, $wrap: wrap, $just: center , $alig: center);
         

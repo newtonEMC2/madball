@@ -1,85 +1,47 @@
-//$tabs__color: darken(white, 5%);
-//$nav__color: #333;
-//$background__hover: rgba(darken(white,10%),.3);
-//$border__color: rgba(darken(white,10%),.3);
-//
-///**************************************
-//    header nav
-//***************************************/
-//
-//.nav{
-//        
-//    transition: transform 1s ease;
-//    background: $nav__color;
-//    text-transform: uppercase;
-//    
-//    @include mq(s){
-//        width: 100%;
-//        height: 100vh;
-//        opacity: .98;
-//    }
-//    
-//    @include mq(m){
-//        background: transparent;
-//        @include flexy($disp: flex);
-//    }
-//    
-//    &-items{
-//        color: $tabs__color;
-//        
-//        @include mq(s){
-//            border-bottom: 1px solid $border__color;
-//            display: block;
-//            padding: 0 rem(15px);
-//            line-height: 3;
-//            
-//            
-//            &:first-child{
-//                border-top: 10px solid $border__color;
-//            }
-//        }
-//        
-//        @include mq(m){
-//            padding: 0 rem(4px);
-//            margin: 0 0 0 rem(20px);
-//            line-height: 2;
-//        }
-//    }
-//}
-//
-////animation on tabs in the header////////////////
-//.nav-tab{
-//    
-//    @include mq(s){
-//        &:hover{
-//            background: $background__hover;
-//        }
-//    }
-//    
-//    @include mq(m){
-//        position: relative;
-//        
-//        &::before{
-//            content: "";
-//            display: block;
-//            width: 0%;
-//            height: 10%;
-//            position: absolute;
-//            background: rgba(darken(white, 5%), .3);
-//            left: 50%;
-//            bottom: 0;
-//            border-radius: 10%;
-//            transition: width .3s ease-in-out,
-//                        left  .3s ease-in-out;
-//        }   
-//        
-//        &:hover::before{
-//            width: 100%;
-//            left: 0;
-//        }
-//        
-//        &:active{
-//            transform: scale(0.95);
-//        }
-//    }
-//}
+$border__color: rgba(darken(white,10%),.3);
+$nav__color-background: #333;
+$nav__color-font: darken(white, 5%);
+$nav__border-phone: rem(2px) solid $border__color;
+$background__hover: rgba(darken(white,10%),.3);
+
+
+.pageHeader__nav{
+    
+    @include flexy($disp: flex, $dir: column);
+            
+    background: $nav__color-background;
+    color: $nav__color-font;
+    font-size: rem(20px);
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 500;
+    
+    width: 80%;
+    height: 100vh;
+    
+    transition: transform .45s ease;
+    transform: translate(-100%);
+    
+    &-tab{
+        @include flexy($disp: flex, $alig: center);
+        border-bottom: $nav__border-phone;
+        border-right: $nav__border-phone;
+        flex: 1;
+        
+        & .pageHeader__nav-icon{
+            color: $nav__color-font;
+            width: rem(26px);
+            margin: 0 rem(6px) 0 rem(10px);
+        }
+        
+        &:first-child{
+            border-top: $nav__border-phone; 
+        }
+        
+        &:hover{
+            background: $background__hover
+        }
+    }
+}
