@@ -8,42 +8,33 @@
         //  variables  
         //////////////////////////////////
         
-        //screen sizes
-        var phone_screen = 461,
-            tablet_screen = 721,
-            resolution_factor = 0.78;
-        
-        //stage
-        var w_for_phone = 318,
-            w_for_tablet = 455,
-            w_for_desktop = 680,
-            
-            w_basis_factor = 340;
-                
         //DOM cache
         var cnv = document.getElementsByClassName("canvas")[0],
             ctx = cnv.getContext('2d'),
-            canvas_w = setStageSize(),
-            canvas_h = Math.floor(canvas_w / resolution_factor),
+            canvas_w = 318,
+            canvas_h = 407,
             
-            template = document.getElementsByClassName("template")[0],
-            template_w = canvas_w,
-            template_h = canvas_h,
+            canvasWrapper = document.getElementsByClassName("canvasWrapper")[0],
+            canvasWrapper_w = canvas_w,
+            canvasWrapper_h = canvas_h,
             
-            lifeCouter = document.getElementsByClassName("template__info-lifes")[0],
-            clock = document.getElementsByClassName("template__info-clock")[0],
+            app = document.getElementById("app-template"),
+            app_w = canvasWrapper_w,
+                        
+            lifeCouter = document.getElementsByClassName("canvasWrapper__info-lifes")[0],
+            clock = document.getElementsByClassName("canvasWrapper__info-clock")[0],
             
-            heartIcon = document.getElementsByClassName("template__icon-heart")[0],
-            fullscreenIcon = document.getElementsByClassName("template__icon-fullscreen")[0],
-            minimizeIcon = document.getElementsByClassName("template__icon-minimize")[0],
+            heartIcon = document.getElementsByClassName("icon-heart")[0],
+            fullscreenIcon = document.getElementsByClassName("icon-fullscreen")[0],
+            minimizeIcon = document.getElementsByClassName("icon-minimize")[0],
             
-            prompt_start = document.getElementsByClassName("template__prompt-start")[0],
-            prompt_end = document.getElementsByClassName("template__prompt-end")[0],
+            prompt_start = document.getElementsByClassName("canvasWrapper__prompt-start")[0],
+            prompt_end = document.getElementsByClassName("canvasWrapper__prompt-end")[0],
         
-            overlay = document.getElementsByClassName("template__overlay")[0];
+            overlay = document.getElementsByClassName("canvasWrapper__overlay")[0];
         
         //ball
-        var ball_radius = 15 * canvas_w / w_basis_factor,
+        var ball_radius = 15,
             ball_color = "blue",
             gravity = .1,
             initial_position_X = canvas_w / 2,
@@ -51,7 +42,7 @@
         
         //column
         var columns_color = "white",
-            col_w = 20 * canvas_w / w_basis_factor,
+            col_w = 20,
             gap_top_min = 0,
             gap_top_max = .65,
             gap_h_min = .20,
@@ -61,23 +52,6 @@
         var lifes = 2;
         
         
-        //////////////////////////////////
-        //  functions 
-        //////////////////////////////////
-        
-        function setStageSize(){
-            if(window.matchMedia( "(min-width: " + tablet_screen + "px )" ).matches){
-                return w_for_desktop;
-            }
-            else if(window.matchMedia( "(min-width: " + phone_screen + "px )" ).matches){
-                return w_for_tablet;
-            }
-            else{
-                return w_for_phone;
-            }
-        }
-        
-                
         //////////////////////////////////
         //  getters 
         //////////////////////////////////
@@ -100,16 +74,24 @@
             return canvas_h;
         }
         
-        function getTemplate(){
-            return template;
+        function getCanvasWrapper(){
+            return canvasWrapper;
         }
         
-        function getTemplateWidth(){
-            return template_w;
+        function getCanvasWrapperWidth(){
+            return canvasWrapper_w;
         }
         
-        function getTemplateHeight(){
-            return template_h;
+        function getCanvasWrapperHeight(){
+            return canvasWrapper_h;
+        }
+        
+        function getApp(){
+            return app;
+        }
+        
+        function getAppWidth(){
+            return app_w;
         }
         
         function getLifeCounter(){
@@ -226,9 +208,11 @@
             getContext: getContext,
             getCnvHeight: getCnvHeight,
             getCnvWidth: getCnvWidth,
-            getTemplate: getTemplate,
-            getTemplateWidth: getTemplateWidth,
-            getTemplmateHeight: getTemplateHeight,
+            getCanvasWrapper: getCanvasWrapper,
+            getCanvasWrapperWidth: getCanvasWrapperWidth,
+            getCanvasWrapperHeight: getCanvasWrapperHeight,
+            getApp: getApp,
+            getAppWidth: getAppWidth,
             getLifeCounter: getLifeCounter,
             getHeartIcon: getHeartIcon,
             getMinimizeIcon: getMinimizeIcon,

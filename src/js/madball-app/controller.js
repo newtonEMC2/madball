@@ -14,7 +14,8 @@
             canvas_w = null,
             canvas_h = null,
             
-            template = null,
+            canvasWrapper = null,
+            app = null,
             lifeCounter = null,
             overlay = null,
             
@@ -90,14 +91,14 @@
                 fullScreenIcon.classList.add("is-hidden");
                 minimizeIcon.classList.remove("is-hidden");
                 overlay.classList.remove("is-hidden");
-                template.classList.add("is-centered");
+                canvasWrapper.classList.add("is-centered");
             }
             
             minimizeIcon.onclick = function(e){
                 minimizeIcon.classList.add("is-hidden");
                 fullScreenIcon.classList.remove("is-hidden");
                 overlay.classList.add("is-hidden");
-                template.classList.remove("is-centered");
+                canvasWrapper.classList.remove("is-centered");
             }
                 
             
@@ -111,8 +112,9 @@
         function setStageSize(){
             cnv.width = global.config.getCnvWidth();
             cnv.height = global.config.getCnvHeight();
-            template.style.width = global.config.getTemplateWidth() + "px";
-            template.style.height = global.config.getTemplmateHeight() + "px";
+            //canvasWrapper.style.width = global.config.getCanvasWrapperWidth() + "px";
+            canvasWrapper.style.height = global.config.getCanvasWrapperHeight() + "px";
+            app.style.width = global.config.getAppWidth() + "px";
         }
             
         
@@ -220,7 +222,8 @@
             ctx = global.config.getContext();
             canvas_w = global.config.getCnvWidth();
             canvas_h = global.config.getCnvHeight();
-            template = global.config.getTemplate();
+            canvasWrapper = global.config.getCanvasWrapper();
+            app = global.config.getApp();
             lifeCounter = global.config.getLifeCounter();
             heartIcon = global.config.getHeartIcon(),
             minimizeIcon = global.config.getMinimizeIcon(),

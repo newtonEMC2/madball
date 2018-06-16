@@ -7,11 +7,15 @@
         //DOM cache
         var nav = document.getElementsByClassName("pageHeader__nav")[0],
             menu_toggle = document.getElementsByClassName("pageHeader__toggle")[0],
-            fullscreenIcon = document.getElementsByClassName("template__icon-fullscreen")[0];
+            fullscreenIcon = document.getElementsByClassName("icon-fullscreen")[0];
         
         //fire events
+        
         menu_toggle.addEventListener("click", togglePhoneNav);
+        
         fullscreenIcon.addEventListener("click", menuFolding); 
+        
+        
         
         
         //functions

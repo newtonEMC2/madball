@@ -41,34 +41,37 @@
     </header>
     
     
-    <main class="l-c-padded-1">
-       <div class="template">
+    <section id="app-template" class="l-c-padded-1">
+      
+       <!-- GAME TEMPLATE -->
+       <div class="canvasWrapper">
            
             <canvas width="" height="" class="canvas"></canvas>
             
-            <div class="template__overlay is-hidden"></div>
+            <div class="canvasWrapper__overlay is-hidden"></div>
             
-            <div class="template__panel">
-                <img src="assets/minimize.svg" alt="icon-minimize" class="template__icon-minimize is-hidden">
-                <img src="assets/fullscreen.svg" alt="icon-fullscreen" class="template__icon-fullscreen">                
-            </div>
-            
-            <span class="template__info-lifes">
-                <img src="assets/heart.svg" alt="icon-heart" class="template__icon-heart">
+            <span class="canvasWrapper__info-lifes">
+                <img src="assets/heart.svg" alt="icon-heart" class="icon-heart">
             </span>
             
-            <span class="template__info-clock">0:00:0</span>
+            <span class="canvasWrapper__info-clock">0:00:0</span>
             
-            <p class="template__prompt-start is-hidden">
+            <p class="canvasWrapper__prompt-start is-hidden">
                 touch or click space bar to start up!!
             </p>
             
-            <p class="template__prompt-end is-hidden">
+            <p class="canvasWrapper__prompt-end is-hidden">
                 game over :( Touch to start over.
             </p>
             
         </div>
-    </main>
+        
+        <div class="panel">
+            <img src="assets/minimize.svg" alt="icon-minimize" class="icon-minimize is-hidden">
+            <img src="assets/fullscreen.svg" alt="icon-fullscreen" class="icon-fullscreen">                
+        </div>
+        
+    </section>
     
     
     <footer></footer>

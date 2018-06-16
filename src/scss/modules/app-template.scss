@@ -24,10 +24,10 @@ $background-prompt-end: rgba(red, .9);
     z-index: 200;
 }
 
-.template{
-    
+.canvasWrapper{
+
     position: relative;
-    margin: auto;
+    width: 100%;
     
     .canvas{
         position: relative;
@@ -36,7 +36,7 @@ $background-prompt-end: rgba(red, .9);
         margin: auto;
         z-index: 200;
     }
-    
+
     &__overlay{
         background: rgba(#333, .9);
         position: fixed;
@@ -46,45 +46,60 @@ $background-prompt-end: rgba(red, .9);
         height: 100vh;
         z-index: 100;
     }
-    
-    &__panel{
-        @include flexy($disp: flex, $just: flex-end, $alig: center);
-        position: relative;
-        padding: rem(8px) 0;
-        z-index: 200;
-                        
-        & > .template__icon-minimize, & > .template__icon-fullscreen{
-            width: rem(20px);
-            height: auto;
-            margin: 0 rem(8px);
-        }
-    }
-    
+
+
+
     &__info-lifes{
         @include flexy($disp: flex, $alig: center);
         @extend %info;
         top: rem(5px);
-                        
-        & > .template__icon-heart{
+
+        & .icon-heart{
             width: rem(20px);
             height: auto;
             margin-left: rem(5px);
         }
     }
-    
+
     &__info-clock{
         @extend %info;
         bottom: rem(5px);
-        
+
     }
-        
+
     &__prompt-start{
         background: $background-prompt-start;
         @extend %prompt;
     }
-    
+
     &__prompt-end{
         background: $background-prompt-end;
         @extend %prompt;
     }
 }
+    
+#app-template{
+    
+    margin: auto;
+    height: auto;
+    
+    & .panel{
+    
+        @include flexy($disp: flex, $just: flex-end, $alig: center);
+        width: 100%;
+        position: relative;
+        padding: rem(8px) 0;
+        z-index: 200;
+        
+        & .icon-minimize, & .icon-fullscreen{
+            width: rem(20px);
+            height: auto;
+            margin: 0 rem(8px);
+        }
+    }
+}
+
+
+
+
+
