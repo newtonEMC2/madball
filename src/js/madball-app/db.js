@@ -7,43 +7,50 @@
               "Try to update you browser");
         return;
     }
-        
-    var db = (function(){
-        
-        var db_json = null;
+    
+    var database = (function(){
+    
+        var db = function(){
 
-        function _create(att, val){
-            db_json = JSON.parse(localStorage.getItem("config"));
-            db_json[att] = val;
-            localStorage.setItem("config", JSON.stringify(db_json));    
+            var _db_json = null;
+
+            function create(att, val){
+                _db_json = JSON.parse(localStorage.getItem("config"));
+                _db_json[att] = val;
+                localStorage.setItem("config", JSON.stringify(_db_json));    
+            }
+
+            function read(att){
+                _db_json = JSON.parse(localStorage.getItem("config"));
+                return _db_json[att];
+            }
+
+            function update(att, val){
+                create(att, val)  
+            }
+
+            function del(att){
+                _db_json = JSON.parse(localStorage.getItem("config"));
+                delete _db_json[att];
+                localStorage.setItem("config", JSON.stringify(_db_json));
+            }
+
+            return {
+                create: create,
+                read: read,
+                update: update,
+                delete: del
+            }
         }
-
-        function _read(att){
-            db_json = JSON.parse(localStorage.getItem("config"));
-            return db_json[att];
+    
+        return{
+            db: function(){return db()};
         }
-
-        function _update(att, val){
-            _create(att, val)  
-        }
-
-        function _delete(att){
-            db_json = JSON.parse(localStorage.getItem("config"));
-            delete db_json[att];
-            localStorage.setItem("config", JSON.stringify(db_json));
-        }
-
-        return {
-            create: _create,
-            read: _read,
-            update: _update,
-            delete: _delete
-        }
-
+    
     })()
     
     
-    global.db = db;
+    global.database = database;
     window.madball = global;
     
 })(window.madball || {});

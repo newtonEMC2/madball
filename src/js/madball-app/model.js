@@ -67,6 +67,7 @@
             var collided = false,
                 started = false,
                 lifes = global.config.getLifes(),
+                dbInstance = global.database.db(),
                 _clock = global.config.getClock(),
                 _setInterval = null,
                 _d = 0,
@@ -139,6 +140,10 @@
 
             function _stopClock(){
                 clearInterval(_setInterval);
+            }
+            
+            function _updateDBScores(){
+                
             }
 
             return {

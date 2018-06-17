@@ -51,6 +51,9 @@
         //game
         var lifes = 2;
         
+        //db
+        var db_results_key = "results";
+        
         
         //////////////////////////////////
         //  getters 
@@ -180,6 +183,13 @@
             return lifes;
         }
         
+        //db
+        
+        function getDbResultsKey(){
+            return db_results_key;
+        }
+        
+        
         //////////////////////////////////
         //  setters
         //////////////////////////////////
@@ -236,6 +246,8 @@
             getGapHeightMax: getGapHeightMax,
             
             getLifes: getLifes,
+            
+            getDbResultsKey: getDbResultsKey,
             
             
             //setters
