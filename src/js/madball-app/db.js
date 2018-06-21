@@ -29,7 +29,7 @@
                 create(att, val)  
             }
 
-            function del(att){
+            function remove(att){
                 _db_json = JSON.parse(localStorage.getItem("config"));
                 delete _db_json[att];
                 localStorage.setItem("config", JSON.stringify(_db_json));
@@ -39,12 +39,12 @@
                 create: create,
                 read: read,
                 update: update,
-                delete: del
+                delete: remove
             }
         }
     
         return{
-            db: function(){return db()};
+            db: function(){return db()}
         }
     
     })()

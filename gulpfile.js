@@ -65,7 +65,6 @@ gulp.task("JS", () => {
     //The order in which de rest of the files are called in, is not relevant
         "src/js/madball-app/basicLibrary.js",
         "src/js/madball-app/config.js",
-        "src/js/madball-app/db.js",
         "src/js/madball-app/model.js",
         "src/js/madball-app/controller.js",
         "src/js/madball-app/controller.js",
@@ -95,7 +94,7 @@ gulp.task("Watcher", () => {
     gulp.watch("src/scss/**/*.scss", ["Sass"]);
     gulp.watch("src/**/*.html", ["HTML"]);
     gulp.watch("src/**/*.js", ["JS"]);
-    gulp.watch("src/assets/*.{PNG,svg,jpg,png,gif}", ["IMG"]);
+    gulp.watch("src/assets/*.{PNG,svg,jpg,png,gif}", ["ASSETS"]);
 });
 
 

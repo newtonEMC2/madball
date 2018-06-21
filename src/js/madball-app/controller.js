@@ -18,15 +18,19 @@
             app = null,
             lifeCounter = null,
             overlay = null,
+            panel = null,
+            bestTime = null,
             
             heartIcon = null,
             minimizeIcon = null,
             fullScreenIcon = null,
+            medallIcon = null,
             
         //instances cache
             col_arr = [],
             bird = null,
             game = null,
+            db = null,
             
         //TODO
             frame_divisor = 200,
@@ -88,21 +92,35 @@
             
             //panel icons events
             fullScreenIcon.onclick = function(e){
+                
                 fullScreenIcon.classList.add("is-hidden");
                 minimizeIcon.classList.remove("is-hidden");
                 overlay.classList.remove("is-hidden");
-                canvasWrapper.classList.add("is-centered");
+                app.classList.add("is-centered");
             }
             
             minimizeIcon.onclick = function(e){
+                
                 minimizeIcon.classList.add("is-hidden");
                 fullScreenIcon.classList.remove("is-hidden");
                 overlay.classList.add("is-hidden");
-                canvasWrapper.classList.remove("is-centered");
+                app.classList.remove("is-centered");
+            }
+            
+            medallIcon.onclick = function(e){
+                
+                if(bestTime.classList.contains("is-hidden")){
+                    
+                    bestTime.classList.remove("is-hidden");
+                    bestTime.innerHTML = "best: " + db.showBestResult();
+                    
+                }else{
+                    
+                    bestTime.classList.add("is-hidden");
+                }
             }
                 
-            
-            
+                        
         }
         
         //////////////////////////////////
@@ -112,9 +130,9 @@
         function setStageSize(){
             cnv.width = global.config.getCnvWidth();
             cnv.height = global.config.getCnvHeight();
-            //canvasWrapper.style.width = global.config.getCanvasWrapperWidth() + "px";
             canvasWrapper.style.height = global.config.getCanvasWrapperHeight() + "px";
             app.style.width = global.config.getAppWidth() + "px";
+            app.style.height = global.config.getCanvasWrapperHeight() + panel.offsetHeight + "px";
         }
             
         
@@ -132,7 +150,6 @@
             }
         }
         
-                
         function setConfigOnDB(){
             if (!localStorage.getItem("config")){
                 localStorage.setItem("config", "{}");
@@ -202,8 +219,9 @@
                 requestAnimationFrame(render);
             }
             else if(game.gameOver() && game.getStarted()){
-                game.end();
                 cancelAnimationFrame(raf);
+                game.end();
+                db.addResult(game.timeToString());
             } 
             
                
@@ -224,16 +242,20 @@
             canvas_h = global.config.getCnvHeight();
             canvasWrapper = global.config.getCanvasWrapper();
             app = global.config.getApp();
+            panel = global.config.getPanel();
+            bestTime = global.config.getClockBestTime();
             lifeCounter = global.config.getLifeCounter();
-            heartIcon = global.config.getHeartIcon(),
-            minimizeIcon = global.config.getMinimizeIcon(),
-            fullScreenIcon = global.config.getFullscreenIcon(),
+            heartIcon = global.config.getHeartIcon();
+            minimizeIcon = global.config.getMinimizeIcon();
+            fullScreenIcon = global.config.getFullscreenIcon();
+            medallIcon = global.config.getMedalIcon();
             overlay = global.config.getOverlay();
             
             //instances
             bird = global.model.Bird(ctx);
             col_arr.push(global.model.Columns(ctx));
             game = global.model.Game();
+            db = global.model.DB();
             
             //set stage size
             setStageSize();
@@ -243,7 +265,7 @@
             
             
             //check db and retrieve custimized config if there is any
-            setConfigOnDB();
+            //setConfigOnDB();
             
                         
             //show popup before starting

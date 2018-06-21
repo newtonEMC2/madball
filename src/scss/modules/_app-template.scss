@@ -24,12 +24,12 @@ $background-prompt-end: rgba(red, .9);
     z-index: 200;
 }
 
-.canvasWrapper{
+.app__canvasWrapper{
 
     position: relative;
     width: 100%;
-    
-    .canvas{
+        
+    &-canvas{
         position: relative;
         background: #333;
         display: block;
@@ -37,19 +37,7 @@ $background-prompt-end: rgba(red, .9);
         z-index: 200;
     }
 
-    &__overlay{
-        background: rgba(#333, .9);
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        z-index: 100;
-    }
-
-
-
-    &__info-lifes{
+    &-info-lifes{
         @include flexy($disp: flex, $alig: center);
         @extend %info;
         top: rem(5px);
@@ -61,29 +49,43 @@ $background-prompt-end: rgba(red, .9);
         }
     }
 
-    &__info-clock{
+    &-info-clock{
         @extend %info;
         bottom: rem(5px);
+        
+        & > p{
+            text-align: right;
+            margin: 0;
+        }
 
     }
 
-    &__prompt-start{
+    &-prompt-start{
         background: $background-prompt-start;
         @extend %prompt;
     }
 
-    &__prompt-end{
+    &-prompt-end{
         background: $background-prompt-end;
         @extend %prompt;
     }
 }
     
-#app-template{
+.app{
     
     margin: auto;
-    height: auto;
-    
-    & .panel{
+            
+    &__overlay{
+        background: rgba(#333, .9);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 100;
+    }
+        
+    &__panel{
     
         @include flexy($disp: flex, $just: flex-end, $alig: center);
         width: 100%;
@@ -91,8 +93,12 @@ $background-prompt-end: rgba(red, .9);
         padding: rem(8px) 0;
         z-index: 200;
         
-        & .icon-minimize, & .icon-fullscreen{
-            width: rem(20px);
+        & .push-both{
+            flex: 1;
+        }
+        
+        & .icon-minimize, & .icon-fullscreen, & .icon-medal{
+            width: rem(24px);
             height: auto;
             margin: 0 rem(8px);
         }

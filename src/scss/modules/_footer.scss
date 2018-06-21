@@ -1,0 +1,12 @@
+.footer{
+    background: #333;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    top: auto;
+    
+    & p{
+        background: red;
+    }
+}
+

@@ -1,13 +1,32 @@
+/**************************************************************
+    BASIC FORMAT
+***************************************************************/
+
 /* All
    ========================================================================== */
 
 /**
- * All elements will be applied border-box as default
+ * basic elements format
  */
 
 *{
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
+p{
+    margin: .5rem 0;
+}
+
+html, body{
+    min-height: 100vh;
+}
+
+
+/**************************************************************
+    CROSS-BROWSER COMPATIBILITY
+***************************************************************/
 
 
 /* Document
@@ -31,8 +50,6 @@ html {
  */
 
 body {
-  margin: 0;
-  padding: 0;
   user-select: none;
 }
 
@@ -91,7 +108,10 @@ small {
 /**
  * IE does not support main but it does when apply diplay block.
  */
-section{
+section,
+footer,
+main,
+header{
     display: block;
 }
 

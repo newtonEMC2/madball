@@ -9,29 +9,34 @@
         //////////////////////////////////
         
         //DOM cache
-        var cnv = document.getElementsByClassName("canvas")[0],
+        var cnv = document.getElementsByClassName("app__canvasWrapper-canvas")[0],
             ctx = cnv.getContext('2d'),
             canvas_w = 318,
             canvas_h = 407,
             
-            canvasWrapper = document.getElementsByClassName("canvasWrapper")[0],
+            canvasWrapper = document.getElementsByClassName("app__canvasWrapper")[0],
             canvasWrapper_w = canvas_w,
             canvasWrapper_h = canvas_h,
             
-            app = document.getElementById("app-template"),
+            app = document.getElementsByClassName("app")[0],
             app_w = canvasWrapper_w,
+            
+            panel = document.getElementsByClassName("app__panel")[0],
                         
-            lifeCouter = document.getElementsByClassName("canvasWrapper__info-lifes")[0],
-            clock = document.getElementsByClassName("canvasWrapper__info-clock")[0],
+            lifeCouter = document.getElementsByClassName("app__canvasWrapper-info-lifes")[0],
+            clock = document.getElementsByClassName("app__canvasWrapper-info-clock")[0],
+            clockActualTime = document.getElementsByClassName("app__canvasWrapper-info-clock-actual")[0],
+            clockBestTime = document.getElementsByClassName("app__canvasWrapper-info-clock-best")[0],
             
             heartIcon = document.getElementsByClassName("icon-heart")[0],
             fullscreenIcon = document.getElementsByClassName("icon-fullscreen")[0],
             minimizeIcon = document.getElementsByClassName("icon-minimize")[0],
+            medalIcon = document.getElementsByClassName("icon-medal")[0],
             
-            prompt_start = document.getElementsByClassName("canvasWrapper__prompt-start")[0],
-            prompt_end = document.getElementsByClassName("canvasWrapper__prompt-end")[0],
+            prompt_start = document.getElementsByClassName("app__canvasWrapper-prompt-start")[0],
+            prompt_end = document.getElementsByClassName("app__canvasWrapper-prompt-end")[0],
         
-            overlay = document.getElementsByClassName("canvasWrapper__overlay")[0];
+            overlay = document.getElementsByClassName("app__overlay")[0];
         
         //ball
         var ball_radius = 15,
@@ -52,7 +57,10 @@
         var lifes = 2;
         
         //db
-        var db_results_key = "results";
+        var db_name = "madballDB",
+            db_results_key = "results",
+            db_config_key = "config",
+            db_results_size = "10";
         
         
         //////////////////////////////////
@@ -97,6 +105,10 @@
             return app_w;
         }
         
+        function getPanel(){
+            return panel;
+        }
+        
         function getLifeCounter(){
             return lifeCouter;
         }
@@ -113,8 +125,20 @@
             return fullscreenIcon;
         }
         
+        function getMedalIcon(){
+            return medalIcon;
+        }
+        
         function getClock(){
             return clock;
+        }
+        
+        function getClockActualTime(){
+            return clockActualTime;
+        }
+        
+        function getClockBestTime(){
+            return clockBestTime;
         }
         
         function getPromptStart(){
@@ -185,8 +209,20 @@
         
         //db
         
+        function GetDbName(){
+            return db_name;
+        }
+        
         function getDbResultsKey(){
             return db_results_key;
+        }
+        
+        function getDbConfigKey(){
+            return db_config_key;
+        }
+        
+        function getDbResultsSize(){
+            return db_results_size;
         }
         
         
@@ -213,6 +249,7 @@
         //  return visible elements
         //////////////////////////////////
         return {
+            
             //getters
             getCnv: getCnv,
             getContext: getContext,
@@ -222,12 +259,16 @@
             getCanvasWrapperWidth: getCanvasWrapperWidth,
             getCanvasWrapperHeight: getCanvasWrapperHeight,
             getApp: getApp,
+            getPanel: getPanel,
             getAppWidth: getAppWidth,
             getLifeCounter: getLifeCounter,
             getHeartIcon: getHeartIcon,
             getMinimizeIcon: getMinimizeIcon,
             getFullscreenIcon: getFullscreenIcon,
+            getMedalIcon: getMedalIcon,
             getClock: getClock,
+            getClockActualTime: getClockActualTime,
+            getClockBestTime: getClockBestTime,
             getPromptStart: getPromptStart,
             getPromptEnd: getPromptEnd,
             getOverlay: getOverlay,
@@ -247,7 +288,10 @@
             
             getLifes: getLifes,
             
+            GetDbName: GetDbName,
             getDbResultsKey: getDbResultsKey,
+            getDbConfigKey: getDbConfigKey,
+            getDbResultsSize: getDbResultsSize,
             
             
             //setters

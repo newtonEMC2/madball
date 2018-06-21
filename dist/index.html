@@ -40,42 +40,57 @@
         </div>
     </header>
     
-    
-    <section id="app-template" class="l-c-padded-1">
-      
-       <!-- GAME TEMPLATE -->
-       <div class="canvasWrapper">
-           
-            <canvas width="" height="" class="canvas"></canvas>
-            
-            <div class="canvasWrapper__overlay is-hidden"></div>
-            
-            <span class="canvasWrapper__info-lifes">
-                <img src="assets/heart.svg" alt="icon-heart" class="icon-heart">
-            </span>
-            
-            <span class="canvasWrapper__info-clock">0:00:0</span>
-            
-            <p class="canvasWrapper__prompt-start is-hidden">
-                touch or click space bar to start up!!
-            </p>
-            
-            <p class="canvasWrapper__prompt-end is-hidden">
-                game over :( Touch to start over.
-            </p>
-            
+    <section class="section-app l-c-padded-1">
+        <div class="app">
+
+           <div class="app__overlay is-hidden"></div>
+
+           <div class="app__canvasWrapper">
+
+                <canvas width="" height="" class="app__canvasWrapper-canvas"></canvas>
+
+                <span class="app__canvasWrapper-info-lifes">
+                    <img src="assets/heart.svg" alt="icon-heart" class="icon-heart">
+                </span>
+
+                <span class="app__canvasWrapper-info-clock">
+                    <p class="app__canvasWrapper-info-clock-best is-hidden"></p>
+                    <p class="app__canvasWrapper-info-clock-actual">0:00:0</p>
+                </span>
+
+                <p class="app__canvasWrapper-prompt-start is-hidden">
+                    touch or click space bar to start up!!
+                </p>
+
+                <p class="app__canvasWrapper-prompt-end is-hidden">
+                    game over :( Touch to start over.
+                </p>
+
+            </div>
+
+            <div class="app__panel">
+                <img src="assets/medal.svg" alt="icon-medal" class="icon-medal">
+                
+                <span class="push-both"></span>
+                
+                <img src="assets/minimize.svg" alt="icon-minimize" class="icon-minimize is-hidden">
+                <img src="assets/fullscreen.svg" alt="icon-fullscreen" class="icon-fullscreen">                
+            </div>
+
         </div>
-        
-        <div class="panel">
-            <img src="assets/minimize.svg" alt="icon-minimize" class="icon-minimize is-hidden">
-            <img src="assets/fullscreen.svg" alt="icon-fullscreen" class="icon-fullscreen">                
-        </div>
-        
     </section>
     
     
-    <footer></footer>
+    <div class="section-spliter"></div>
     
+    <!--
+    <footer class="footer l-c-padded-1">
+        <div class="l-wrapper-basic">
+            <p>maddBallApp</p>
+            <p>alexis.corbacho@hotmail.com</p>  
+        </div>
+    </footer>
+    -->
     
 
 <script src="js/app.min.js"></script>

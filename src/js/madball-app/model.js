@@ -67,8 +67,7 @@
             var collided = false,
                 started = false,
                 lifes = global.config.getLifes(),
-                dbInstance = global.database.db(),
-                _clock = global.config.getClock(),
+                _clockActualTime = global.config.getClockActualTime(),
                 _setInterval = null,
                 _d = 0,
                 _s = 0,
@@ -133,7 +132,7 @@
                     _d++;
                     if(_d > 9){_d = 0; _s++}
                     if(_s > 59){_s = 0; _m++}
-                    _clock.innerHTML = "" + _m + ((_s > 9) ? ":" : ":0") + _s + ":" + _d;
+                    _clockActualTime.innerHTML = "" + _m + ((_s > 9) ? ":" : ":0") + _s + ":" + _d;
 
                 }, 100)
             }
@@ -142,10 +141,10 @@
                 clearInterval(_setInterval);
             }
             
-            function _updateDBScores(){
-                
+            function timeToString(){
+                return _m + ":" + _s + ":" + _d;
             }
-
+            
             return {
                 getStarted: getStarted,
                 getLifes: getLifes,
@@ -157,20 +156,104 @@
                 gameOver: gameOver,
                 start: start,
                 showPromptStart: showPromptStart,
-                end: end
+                end: end,
+                timeToString: timeToString
+            }
+        }
+        
+        
+        var DB = function(){
+
+            var _db_json = null,
+                _db_results_array = null,
+                
+                _db_results_size = global.config.getDbResultsSize(),
+                _db_name = global.config.GetDbName(),
+                _db_configKey = global.config.getDbConfigKey(),
+                _db_resultsKey = global.config.getDbResultsKey();
+                        
+            
+            //ensure there is a db created every time the game is started
+            if(!localStorage.getItem(global.config.GetDbName())){
+                _db_json = {};
+                _db_json[_db_configKey] = {};
+                _db_json[_db_resultsKey] = [];
+                localStorage.setItem(_db_name, JSON.stringify(_db_json));
+            }
+            
+
+            function create(att, val){
+                
+                _db_json = JSON.parse(localStorage.getItem("config"));
+                _db_json[att] = val;
+                localStorage.setItem("config", JSON.stringify(_db_json));    
+            }
+
+            function read(att){
+                
+                _db_json = JSON.parse(localStorage.getItem("config"));
+                return _db_json[att];
+            }
+
+            function update(att, val){
+                
+                create(att, val)  
+            }
+
+            function remove(att){
+                
+                _db_json = JSON.parse(localStorage.getItem("config"));
+                delete _db_json[att];
+                localStorage.setItem("config", JSON.stringify(_db_json));
+            }
+            
+            function sortArray(array){
+                
+                array.sort(function(a, b){return b-a});
+                
+                return array;
+            }
+            
+            function addResult(result){
+                
+                _db_json = JSON.parse(localStorage.getItem(_db_name));
+                _db_results_array = _db_json[_db_resultsKey]
+                
+                _db_results_array.push(result);
+                
+                _db_results_array = sortArray(_db_results_array);
+                
+                if(_db_results_array.length > _db_results_size){
+                    _db_results_array.pop();
+                    _db_json[_db_resultsKey] = _db_results_array;
+                }
+                
+                localStorage.setItem(_db_name, JSON.stringify(_db_json));
+            }
+            
+            function showBestResult(){
+                _db_json = JSON.parse(localStorage.getItem(_db_name));
+                _db_results_array = _db_json[_db_resultsKey]
+                
+                return _db_results_array[0];
+            }
+            
+            return {
+                addResult: addResult,
+                showBestResult: showBestResult,
+                create: create,
+                read: read,
+                update: update,
+                remove: remove
             }
         }
             
-        
-        
-        
         return{
             Bird: function(ctx){return new Bird(ctx)},
             Columns: function(ctx){return new Columns(ctx)},
-            Game: function(){return Game()}
+            Game: function(){return Game()},
+            DB: function(){return DB()}
         }
-        
-        
         
     })()
     
