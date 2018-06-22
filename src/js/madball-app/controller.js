@@ -112,15 +112,15 @@
                 if(bestTime.classList.contains("is-hidden")){
                     
                     bestTime.classList.remove("is-hidden");
-                    bestTime.innerHTML = "best: " + db.showBestResult();
-                    
+                    bestTime.innerHTML = "best: " + (!JSON.parse(localStorage.getItem("madballDB")).results[0] ? "0:00:0" : db.showBestResult());
+                
                 }else{
                     
                     bestTime.classList.add("is-hidden");
                 }
             }
                 
-                        
+                          
         }
         
         //////////////////////////////////

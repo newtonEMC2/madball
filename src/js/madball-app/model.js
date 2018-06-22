@@ -132,7 +132,7 @@
                     _d++;
                     if(_d > 9){_d = 0; _s++}
                     if(_s > 59){_s = 0; _m++}
-                    _clockActualTime.innerHTML = "" + _m + ((_s > 9) ? ":" : ":0") + _s + ":" + _d;
+                    _clockActualTime.innerHTML = timeToString();
 
                 }, 100)
             }
@@ -142,7 +142,7 @@
             }
             
             function timeToString(){
-                return _m + ":" + _s + ":" + _d;
+                return _m + ((_s > 9) ? ":" : ":0") + _s + ":" + _d;
             }
             
             return {
@@ -209,9 +209,7 @@
             
             function sortArray(array){
                 
-                array.sort(function(a, b){return b-a});
-                
-                return array;
+                return array.sort();
             }
             
             function addResult(result){
@@ -232,10 +230,13 @@
             }
             
             function showBestResult(){
-                _db_json = JSON.parse(localStorage.getItem(_db_name));
-                _db_results_array = _db_json[_db_resultsKey]
                 
-                return _db_results_array[0];
+                _db_json = JSON.parse(localStorage.getItem(_db_name));
+                _db_results_array = _db_json[_db_resultsKey];
+                console.log(_db_results_array);
+                _db_results_array = sortArray(_db_results_array);
+                
+                return _db_results_array[_db_results_array.length - 1];
             }
             
             return {
