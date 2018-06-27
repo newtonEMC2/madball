@@ -18,10 +18,12 @@
             canvasWrapper_w = canvas_w,
             canvasWrapper_h = canvas_h,
             
+            panel = document.getElementsByClassName("app__panel")[0],
+            panel_h = 40,
+            
             app = document.getElementsByClassName("app")[0],
             app_w = canvasWrapper_w,
-            
-            panel = document.getElementsByClassName("app__panel")[0],
+            app_h = panel_h + canvasWrapper_h,
                         
             lifeCouter = document.getElementsByClassName("app__canvasWrapper-info-lifes")[0],
             clock = document.getElementsByClassName("app__canvasWrapper-info-clock")[0],
@@ -32,11 +34,16 @@
             fullscreenIcon = document.getElementsByClassName("icon-fullscreen")[0],
             minimizeIcon = document.getElementsByClassName("icon-minimize")[0],
             medalIcon = document.getElementsByClassName("icon-medal")[0],
+            restartIcon = document.getElementsByClassName("icon-restart")[0],
+            configIcon = document.getElementsByClassName("icon-config")[0],
+            closeIcon = document.getElementsByClassName("icon-close")[0],
             
             prompt_start = document.getElementsByClassName("app__canvasWrapper-prompt-start")[0],
             prompt_end = document.getElementsByClassName("app__canvasWrapper-prompt-end")[0],
         
-            overlay = document.getElementsByClassName("app__overlay")[0];
+            overlay = document.getElementsByClassName("app__overlay")[0],
+        
+            configPopup = document.getElementsByClassName("app__popup-config")[0];
         
         //ball
         var ball_radius = 15,
@@ -105,8 +112,16 @@
             return app_w;
         }
         
+        function getAppHeight(){
+            return app_h;
+        }
+        
         function getPanel(){
             return panel;
+        }
+        
+        function getPanelHeight(){
+            return panel_h;
         }
         
         function getLifeCounter(){
@@ -127,6 +142,18 @@
         
         function getMedalIcon(){
             return medalIcon;
+        }
+        
+        function getRestartIcon(){
+            return restartIcon;
+        }
+        
+        function getConfigIcon(){
+            return configIcon;
+        }
+        
+        function getCloseIcon(){
+            return closeIcon;
         }
         
         function getClock(){
@@ -151,6 +178,10 @@
         
         function getOverlay(){
             return overlay;
+        }
+        
+        function getConfigPopup(){
+            return configPopup;
         }
         
         //ball
@@ -259,19 +290,25 @@
             getCanvasWrapperWidth: getCanvasWrapperWidth,
             getCanvasWrapperHeight: getCanvasWrapperHeight,
             getApp: getApp,
-            getPanel: getPanel,
             getAppWidth: getAppWidth,
+            getAppHeight: getAppHeight,
+            getPanel: getPanel,
+            getPanelHeight: getPanelHeight,
             getLifeCounter: getLifeCounter,
             getHeartIcon: getHeartIcon,
             getMinimizeIcon: getMinimizeIcon,
             getFullscreenIcon: getFullscreenIcon,
             getMedalIcon: getMedalIcon,
+            getRestartIcon: getRestartIcon,
+            getConfigIcon: getConfigIcon,
+            getCloseIcon: getCloseIcon,
             getClock: getClock,
             getClockActualTime: getClockActualTime,
             getClockBestTime: getClockBestTime,
             getPromptStart: getPromptStart,
             getPromptEnd: getPromptEnd,
             getOverlay: getOverlay,
+            getConfigPopup: getConfigPopup,
             
             getXo: getXo,
             getYo: getYo,

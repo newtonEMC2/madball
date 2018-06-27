@@ -61,8 +61,13 @@ gulp.task("HTML", () => {
 //js
 gulp.task("JS", () => {
     return gulp.src([
-    //the same way we do with jquery, the libraries are called first.
-    //The order in which de rest of the files are called in, is not relevant
+    //the same way we do with jquery, the libraries are called first so this can be
+    //seen in the module maddball-app when calling on  basicLibrary. The order in 
+    //which de rest of the files are called in, is not relevant.
+    
+    //as explained up above, madball-app itself is a module so this will be called on 
+    //before ui is.
+    
         "src/js/madball-app/basicLibrary.js",
         "src/js/madball-app/config.js",
         "src/js/madball-app/model.js",

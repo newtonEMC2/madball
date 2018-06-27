@@ -14,17 +14,21 @@
             canvas_w = null,
             canvas_h = null,
             
+            panel = null,
             canvasWrapper = null,
             app = null,
             lifeCounter = null,
             overlay = null,
-            panel = null,
+            configPopup = null,
             bestTime = null,
             
             heartIcon = null,
             minimizeIcon = null,
             fullScreenIcon = null,
             medallIcon = null,
+            restartIcon = null,
+            configIcon = null,
+            closeIcon = null,
             
         //instances cache
             col_arr = [],
@@ -51,6 +55,9 @@
             //when space bar clicked...
             
             document.onkeydown = function(e){
+                
+                e.preventDefault();
+                
                 if(e.keyCode == 32 && !pressed && game.getStarted()) {//bar space
                     bird.jump();
                     pressed = true;
@@ -119,8 +126,25 @@
                     bestTime.classList.add("is-hidden");
                 }
             }
+            
+            restartIcon.onclick = function(e){
+                location.reload();
+            }
+            
+            configIcon.onclick = function(e){
                 
-                          
+                if(configPopup.classList.contains("is-hidden")){
+                   configPopup.classList.remove("is-hidden");
+                }else{
+                    configPopup.classList.add("is-hidden");
+                }
+                
+            }
+            
+            closeIcon.onclick = function(e){
+                configPopup.classList.add("is-hidden");
+            }
+                
         }
         
         //////////////////////////////////
@@ -131,8 +155,9 @@
             cnv.width = global.config.getCnvWidth();
             cnv.height = global.config.getCnvHeight();
             canvasWrapper.style.height = global.config.getCanvasWrapperHeight() + "px";
+            panel.style.height = global.config.getPanelHeight() + "px";
             app.style.width = global.config.getAppWidth() + "px";
-            app.style.height = global.config.getCanvasWrapperHeight() + panel.offsetHeight + "px";
+            app.style.height = global.config.getAppHeight() + "px";
         }
             
         
@@ -231,7 +256,7 @@
         //////////////////////////////////
         //  init
         //////////////////////////////////
-        document.addEventListener("DOMContentLoaded", function(){
+        document.addEventListener("DOMContentLoaded", function(e){
             /* to keep this order is important*/
             
             //set variables on the controller so the rendering method does not
@@ -249,11 +274,15 @@
             minimizeIcon = global.config.getMinimizeIcon();
             fullScreenIcon = global.config.getFullscreenIcon();
             medallIcon = global.config.getMedalIcon();
+            restartIcon = global.config.getRestartIcon();
+            configIcon = global.config.getConfigIcon();
+            closeIcon = global.config.getCloseIcon();
             overlay = global.config.getOverlay();
+            configPopup = global.config.getConfigPopup();
             
             //instances
-            bird = global.model.Bird(ctx);
-            col_arr.push(global.model.Columns(ctx));
+            bird = global.model.Bird();
+            col_arr.push(global.model.Columns());
             game = global.model.Game();
             db = global.model.DB();
             

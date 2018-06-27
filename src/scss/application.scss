@@ -19,6 +19,8 @@
 @import 'layout/l-wrapper-basic';
 @import 'layout/l-equidistant';
 @import 'layout/l-c-padded-1';
+@import 'layout/l-c-padded-2';
+@import 'layout/l-responsive-sections';
 
 // ==========================================================================
 // Modules
@@ -28,6 +30,10 @@
 @import 'modules/nav-toggle';
 @import 'modules/app-template';
 @import 'modules/footer';
+@import 'modules/section-spliter';
+@import 'modules/section-title';
+@import 'modules/results';
+@import 'modules/about';
 
 // ==========================================================================
 // States
@@ -36,6 +42,6 @@
 @import 'states/is-phone-nav-active';
 @import 'states/is-toggle-nav-active';
 @import 'states/is-centered';
-
+@import 'states/is-sticky';
 
 

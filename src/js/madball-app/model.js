@@ -4,8 +4,9 @@
 
     var model = (function(){
     
-        function Bird(ctx){
+        function Bird(){
             
+            this.ctx = global.config.getContext(),
             this.canvas_h = global.config.getCnvHeight(),
             this.x = global.config.getXo(),
             this.y = global.config.getYo(),
@@ -16,10 +17,10 @@
             this.color = global.config.getBallColor(),
 
             this.draw = function(ctx){
-                ctx.beginPath();
-                ctx.arc(this.x,this.y,this.radius,0,2*Math.PI);
-                ctx.fillStyle = this.color;
-                ctx.fill();
+                this.ctx.beginPath();
+                this.ctx.arc(this.x,this.y,this.radius,0,2*Math.PI);
+                this.ctx.fillStyle = this.color;
+                this.ctx.fill();
             }, 
 
             this.move = function(){
@@ -41,7 +42,8 @@
             }
         }
 
-        function Columns(ctx){
+        function Columns(){
+            this.ctx = global.config.getContext(),
             this.canvas_h = global.config.getCnvHeight(),
             this.x = global.config.getCnvWidth(),
             this.col_w = global.config.getColumnsWidth(),
@@ -50,11 +52,11 @@
             this.color = global.config.getColumnsColor(),
                 
             this.draw = function(ctx){
-                ctx.beginPath();
-                ctx.rect(this.x, 0, this.col_w, this.gap_top);
-                ctx.rect(this.x, this.gap_top + this.gap_h, this.col_w, this.canvas_h);
-                ctx.fillStyle = this.color;
-                ctx.fill();
+                this.ctx.beginPath();
+                this.ctx.rect(this.x, 0, this.col_w, this.gap_top);
+                this.ctx.rect(this.x, this.gap_top + this.gap_h, this.col_w, this.canvas_h);
+                this.ctx.fillStyle = this.color;
+                this.ctx.fill();
             }
 
             this.move = function(){
@@ -219,10 +221,10 @@
                 
                 _db_results_array.push(result);
                 
-                _db_results_array = sortArray(_db_results_array);
+                sortArray(_db_results_array);
                 
                 if(_db_results_array.length > _db_results_size){
-                    _db_results_array.pop();
+                    _db_results_array.shift();
                     _db_json[_db_resultsKey] = _db_results_array;
                 }
                 
@@ -233,8 +235,8 @@
                 
                 _db_json = JSON.parse(localStorage.getItem(_db_name));
                 _db_results_array = _db_json[_db_resultsKey];
-                console.log(_db_results_array);
-                _db_results_array = sortArray(_db_results_array);
+                
+                sortArray(_db_results_array);
                 
                 return _db_results_array[_db_results_array.length - 1];
             }
@@ -250,8 +252,8 @@
         }
             
         return{
-            Bird: function(ctx){return new Bird(ctx)},
-            Columns: function(ctx){return new Columns(ctx)},
+            Bird: function(ctx){return new Bird()},
+            Columns: function(ctx){return new Columns()},
             Game: function(){return Game()},
             DB: function(){return DB()}
         }

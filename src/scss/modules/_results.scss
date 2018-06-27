@@ -1,0 +1,17 @@
+.results{
+        
+    &__list{
+        list-style: none;
+        
+        
+        &-item{
+            margin-bottom: rem(10px);
+            padding: rem(4px) 0;
+            border-bottom: 1px solid black;
+            
+            &-time{
+                float: right;
+            }
+        }
+    }
+}

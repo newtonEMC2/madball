@@ -24,11 +24,26 @@ $background__hover: rgba(darken(white,10%),.3);
     transition: transform .45s ease;
     transform: translate(-100%);
     
+    @include mq(m){
+        position: static;
+        height: auto;
+        width: auto;
+        flex-direction: row;
+        transform: translate(0%);
+        margin-left: auto;
+    }
+    
     &-tab{
         @include flexy($disp: flex, $alig: center);
         border-bottom: $nav__border-phone;
         border-right: $nav__border-phone;
         flex: 1;
+
+        @include mq(m){
+            border: 0;
+            flex: none;
+            padding: 0 rem(10px);
+        }
         
         & .pageHeader__nav-icon{
             color: $nav__color-font;
@@ -38,6 +53,11 @@ $background__hover: rgba(darken(white,10%),.3);
         
         &:first-child{
             border-top: $nav__border-phone; 
+            
+            @include mq(m){
+                border: 0;
+            }
+            
         }
         
         &:hover{

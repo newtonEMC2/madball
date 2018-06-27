@@ -1,0 +1,41 @@
+body{
+    
+    & > * {
+        width: 100%;
+    }
+    
+    @include mq(l){
+        
+        .section-app,
+        .results,
+        .about{
+            width: 50%;
+            border: 1px solid red;
+        }
+        
+        .results,
+        .about{
+            float: right;
+        }
+        
+        .section-app{
+            float: left;
+        }
+        
+        .footer{
+            clear: both;
+        }
+        
+        .section-spliter{
+            display: none;
+        }
+        
+        .section-app{
+            position: relative;
+           
+            
+            
+        }
+        
+    }
+}
