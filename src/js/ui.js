@@ -4,12 +4,13 @@
     
     var ui = (function(){
         
-        //DOM cache
+        //DOM 
         var nav = document.getElementsByClassName("pageHeader__nav")[0],
             tab_results = document.getElementsByClassName("tab__results")[0],
             tab_about = document.getElementsByClassName("tab__about")[0],
             tab_play = document.getElementsByClassName("tab__play")[0],
             menu_toggle = document.getElementsByClassName("pageHeader__toggle")[0],
+            
             footer = document.getElementsByClassName("footer")[0],
             header = document.getElementsByClassName("pageHeader")[0],
             body = document.getElementsByTagName("body")[0],
@@ -17,6 +18,7 @@
             results = document.getElementsByClassName("results")[0],
             about = document.getElementsByClassName("about")[0],
             sectionApp = document.getElementsByClassName("section-app")[0],
+            
             special_wrapper_app = document.getElementsByClassName("special__wrapper-app")[0],
             special_wrapper_header = document.getElementsByClassName("special__wrapper-header")[0],
             
@@ -24,10 +26,12 @@
         
         //aux variables
         var db_json = null,
+            sectionAppTop_h = null,
             resultsTop_h = null,
             aboutTop_h = null,
-            pageHeader_offsetHeight = null,
-            footer_offsetTop = null,
+            footerTop_h = null,
+            header_offsetHeight = null,
+            footer_offsetHeight = null,
             mq = null,
             offsetTops = {
                 "tab__play": 0,
@@ -41,6 +45,19 @@
             
         
         //functions
+        function setChangingVariables(){
+            resultsTop_h = results.offsetTop;
+            aboutTop_h = about.offsetTop;
+            footerTop_h = footer.offsetTop;
+            sectionAppTop_h = sectionApp.offsetTop;
+            
+            header_offsetHeight = header.offsetHeight;
+            footer_offsetHeight = footer.offsetHeight;
+            
+            offsetTops.tab__results = resultsTop_h - header_offsetHeight;
+            offsetTops.tab__about = aboutTop_h - header_offsetHeight;
+        }
+        
         function togglePhoneNav(){
             if(nav.classList.contains("is-phone-nav-active")){
                 nav.classList.remove("is-phone-nav-active");
@@ -51,6 +68,17 @@
             }
         }
         
+        function tabHighlighting(){
+            console.log(document.body.scrollTop);
+            console.log(resultsTop_h);
+            if(sectionAppTop_h === 0){
+                tab_play.classList.add("is-selected");
+            }
+            if(resultsTop_h === 0){
+                tab_results.classList.add("is-selected");
+            }
+        }
+        
         function menuFolding(){
             nav.classList.remove("is-phone-nav-active");
             menu_toggle.classList.remove("is-toggle-nav-active");
@@ -58,7 +86,7 @@
         
         function stickyFooter(){
             footer.classList.remove("is-sticky");
-            if(footer.offsetTop + footer.offsetHeight < window.innerHeight){
+            if(footerTop_h + footer_offsetHeight < window.innerHeight){
                 footer.classList.add("is-sticky");
             }
         }       
@@ -90,29 +118,25 @@
                 
             }else{
             
-                pageHeader_offsetHeight = header.offsetHeight;
-                footer_offsetTop = footer.offsetTop;
+                header_offsetHeight = header.offsetHeight;
+                footerTop_h = footer.offsetTop;
 
 
-                results.style.minHeight = window.innerHeight - pageHeader_offsetHeight + "px";
+                results.style.minHeight = window.innerHeight - header_offsetHeight + "px";
                 about.style.minHeight = 100 + "vh";
                 special_wrapper_app.style.height = results.offsetHeight + about.offsetHeight + "px";
-                sectionApp.style.height = window.innerHeight - pageHeader_offsetHeight + "px";
+                sectionApp.style.height = window.innerHeight - header_offsetHeight + "px";
             }
         }
         
         function scrollTo(e){
-            pageHeader_offsetHeight = header.offsetHeight;
-            resultsTop_h = results.offsetTop;
-            aboutTop_h = about.offsetTop;
-            offsetTops.tab__results = resultsTop_h - pageHeader_offsetHeight;
-            offsetTops.tab__about = aboutTop_h - pageHeader_offsetHeight;
+            
             var array = e.target.classList;
+            
             for(var i = 0; i < array.length; i++){
                 for(var att in offsetTops){
                     if(att === array[i]){
                         window.scrollTo(0, offsetTops[att]);
-                        console.log(offsetTops[att]);
                     }
                 }
             }
@@ -140,17 +164,24 @@
             togglePhoneNav();
         });
         
+        window.addEventListener("scroll", function(){
+            setChangingVariables();
+            tabHighlighting();
+        })
+                                
         window.addEventListener("resize", function(){
-            
             setStage();
+            setChangingVariables();
             stickyFooter();
+            tabHighlighting();
         });
         
         document.addEventListener("DOMContentLoaded", function(){
-            fillResultsUp();
-            
             setStage();
+            setChangingVariables();
+            fillResultsUp();
             stickyFooter();
+            tabHighlighting();
         });
         
         

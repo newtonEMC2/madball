@@ -61,7 +61,14 @@ $background__hover: rgba(darken(white,10%),.3);
         }
         
         &:hover{
-            background: $background__hover
+            background: $background__hover;
+            
+            @include mq(m){
+                transition: transform .15s ease;
+                background: none;
+                transform: scale(1.2);
+            }
+                
         }
     }
 }
