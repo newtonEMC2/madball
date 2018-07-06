@@ -82,7 +82,7 @@ $background-prompt-end: rgba(red, .9);
     
 .app{
     margin: auto;
-            
+        
     &__overlay{
         @extend %fixed;    
         z-index: 100;

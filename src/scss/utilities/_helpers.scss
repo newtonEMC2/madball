@@ -1,0 +1,12 @@
+%vertical-bars-spliters{
+        content: "";
+        display: none;
+        width: 4px;
+        height: 90%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        border-radius: 4px;
+        background: #333;
+}

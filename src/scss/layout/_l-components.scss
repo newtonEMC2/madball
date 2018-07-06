@@ -2,15 +2,20 @@ body{
     
     & > * {
         width: 100%;
+        position: relative;
+    }
+    
+    .section-app{
+        z-index: 1000;
     }
     
     @include mq(l){
         
         .section-app,
         .results,
-        .about{
+        .about,
+        .special__wrapper-app{
             width: 50%;
-            border: 1px solid red;
         }
         
         .results,
@@ -18,8 +23,9 @@ body{
             float: right;
         }
         
-        .section-app{
+        .special__wrapper-app{
             float: left;
+            background: lighten(black, 90%);
         }
         
         .footer{
@@ -31,11 +37,8 @@ body{
         }
         
         .section-app{
-            position: relative;
-           
-            
-            
+            position: fixed;
         }
-        
     }
 }
+

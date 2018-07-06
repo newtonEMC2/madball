@@ -1,9 +1,15 @@
 .results{
+    
+    position: relative;
+    
+    @include mq(l){
+        background: lighten(orange, 46%);
+    }
+    
         
     &__list{
         list-style: none;
-        
-        
+                
         &-item{
             margin-bottom: rem(10px);
             padding: rem(4px) 0;
@@ -13,5 +19,14 @@
                 float: right;
             }
         }
+    }
+    
+    &::after{
+        
+        @extend %vertical-bars-spliters; 
+        @include mq(l){
+            display: block;
+        }
+        
     }
 }

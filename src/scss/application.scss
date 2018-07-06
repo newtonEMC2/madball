@@ -5,7 +5,7 @@
 @import 'utilities/config';
 @import 'utilities/functions';
 @import 'utilities/mixins';
-
+@import 'utilities/helpers';
 
 // ==========================================================================
 // Base Styles
@@ -20,7 +20,8 @@
 @import 'layout/l-equidistant';
 @import 'layout/l-c-padded-1';
 @import 'layout/l-c-padded-2';
-@import 'layout/l-responsive-sections';
+@import 'layout/l-components';
+
 
 // ==========================================================================
 // Modules

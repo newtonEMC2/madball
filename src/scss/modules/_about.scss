@@ -1,6 +1,20 @@
 .about{
     
+    position: relative;
+    
+    @include mq(l){
+        background: lighten(red, 47%);
+    }
+        
     &__p{
         text-align: justify;
+    }
+    
+    &::after{
+        
+        @extend %vertical-bars-spliters;    
+        @include mq(l){
+            display: block;
+        }
     }
 }

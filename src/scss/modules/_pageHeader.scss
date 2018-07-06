@@ -3,7 +3,12 @@ $toggle-bckgrnd: darken(white, 5%);
 .pageHeader{
     line-height: 2;
     background: #333;
-    
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 500;
+        
     &__title{
         color: $toggle-bckgrnd;
     }

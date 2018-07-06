@@ -48,7 +48,7 @@
         //ball
         var ball_radius = 15,
             ball_color = "blue",
-            gravity = .1,
+            gravity = 0.1,
             initial_position_X = canvas_w / 2,
             initial_position_Y = canvas_h / 2;
         

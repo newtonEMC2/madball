@@ -3,5 +3,11 @@
 .l-c-padded-1{
     padding-top: rem(14px);
     padding-bottom: rem(14px);
+    
+    @include mq(l){
+        padding-top: rem(30px);
+        padding-bottom: rem(30px);
+    }
+    
 }
 
