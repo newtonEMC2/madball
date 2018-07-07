@@ -38,6 +38,7 @@ $background__hover: rgba(darken(white,10%),.3);
         border-bottom: $nav__border-phone;
         border-right: $nav__border-phone;
         flex: 1;
+        cursor: pointer;
 
         @include mq(m){
             border: 0;

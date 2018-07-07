@@ -9,6 +9,7 @@
             tab_results = document.getElementsByClassName("tab__results")[0],
             tab_about = document.getElementsByClassName("tab__about")[0],
             tab_play = document.getElementsByClassName("tab__play")[0],
+            tabs = document.getElementsByClassName("pageHeader__nav-tab"),
             menu_toggle = document.getElementsByClassName("pageHeader__toggle")[0],
             
             footer = document.getElementsByClassName("footer")[0],
@@ -26,7 +27,7 @@
         
         //aux variables
         var db_json = null,
-            sectionAppTop_h = null,
+            sWrapperAppTop_h = null,
             resultsTop_h = null,
             aboutTop_h = null,
             footerTop_h = null,
@@ -41,23 +42,10 @@
         
         
         //other variables
-        var mq_large = "1050px"; //config .scss has a reference to it
+        var mq_large = "1050px", //config .scss has a reference to it
+            mq_medium = "650px"; //config .scss has a reference to it
             
-        
         //functions
-        function setChangingVariables(){
-            resultsTop_h = results.offsetTop;
-            aboutTop_h = about.offsetTop;
-            footerTop_h = footer.offsetTop;
-            sectionAppTop_h = sectionApp.offsetTop;
-            
-            header_offsetHeight = header.offsetHeight;
-            footer_offsetHeight = footer.offsetHeight;
-            
-            offsetTops.tab__results = resultsTop_h - header_offsetHeight;
-            offsetTops.tab__about = aboutTop_h - header_offsetHeight;
-        }
-        
         function togglePhoneNav(){
             if(nav.classList.contains("is-phone-nav-active")){
                 nav.classList.remove("is-phone-nav-active");
@@ -69,13 +57,30 @@
         }
         
         function tabHighlighting(){
-            console.log(document.body.scrollTop);
-            console.log(resultsTop_h);
-            if(sectionAppTop_h === 0){
+            
+            mq = window.matchMedia( "(min-width: " + mq_medium + ")" );
+            if(mq.matches){
+                return false;
+            }
+            
+            resultsTop_h = results.offsetTop;
+            aboutTop_h = about.offsetTop;
+            header_offsetHeight = header.offsetHeight;
+            
+            for(var i = 0; i < tabs.length; i++){
+                tabs[i].classList.remove("is-selected");
+            }
+            
+            if(window.pageYOffset >= 0 &&
+               window.pageYOffset < resultsTop_h - header_offsetHeight){
                 tab_play.classList.add("is-selected");
             }
-            if(resultsTop_h === 0){
+            else if(window.pageYOffset >= resultsTop_h - header_offsetHeight &&
+               window.pageYOffset < aboutTop_h - header_offsetHeight){
                 tab_results.classList.add("is-selected");
+            }
+            else{
+                tab_about.classList.add("is-selected");
             }
         }
         
@@ -86,7 +91,7 @@
         
         function stickyFooter(){
             footer.classList.remove("is-sticky");
-            if(footerTop_h + footer_offsetHeight < window.innerHeight){
+            if(footer.offsetTop + footer_offsetHeight < window.innerHeight){
                 footer.classList.add("is-sticky");
             }
         }       
@@ -121,7 +126,6 @@
                 header_offsetHeight = header.offsetHeight;
                 footerTop_h = footer.offsetTop;
 
-
                 results.style.minHeight = window.innerHeight - header_offsetHeight + "px";
                 about.style.minHeight = 100 + "vh";
                 special_wrapper_app.style.height = results.offsetHeight + about.offsetHeight + "px";
@@ -130,6 +134,13 @@
         }
         
         function scrollTo(e){
+            
+            resultsTop_h = results.offsetTop;
+            aboutTop_h = about.offsetTop;
+            header_offsetHeight = header.offsetHeight;
+            
+            offsetTops.tab__results = resultsTop_h - header_offsetHeight;
+            offsetTops.tab__about = aboutTop_h - header_offsetHeight;
             
             var array = e.target.classList;
             
@@ -152,33 +163,33 @@
         tab_results.addEventListener("click", function(e){
             scrollTo(e);
             togglePhoneNav();
+            tabHighlighting();
         });
                 
         tab_about.addEventListener("click", function(e){
             scrollTo(e);
             togglePhoneNav();
+            tabHighlighting();
         });
         
         tab_play.addEventListener("click", function(e){
             scrollTo(e);
             togglePhoneNav();
+            tabHighlighting();
         });
         
         window.addEventListener("scroll", function(){
-            setChangingVariables();
             tabHighlighting();
         })
                                 
         window.addEventListener("resize", function(){
             setStage();
-            setChangingVariables();
             stickyFooter();
             tabHighlighting();
         });
         
         document.addEventListener("DOMContentLoaded", function(){
             setStage();
-            setChangingVariables();
             fillResultsUp();
             stickyFooter();
             tabHighlighting();
