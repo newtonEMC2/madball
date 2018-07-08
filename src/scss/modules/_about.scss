@@ -8,6 +8,10 @@
         
     &__p{
         text-align: justify;
+        
+        @include mq(m){
+            line-height: 1.5;
+        }
     }
     
     &::after{

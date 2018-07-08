@@ -36,19 +36,21 @@
             medalIcon = document.getElementsByClassName("icon-medal")[0],
             restartIcon = document.getElementsByClassName("icon-restart")[0],
             configIcon = document.getElementsByClassName("icon-config")[0],
-            closeIcon = document.getElementsByClassName("icon-close")[0],
+            rulesIcon = document.getElementsByClassName("icon-rules")[0],
+            closeIcons = document.getElementsByClassName("icon-close"),
             
             prompt_start = document.getElementsByClassName("app__canvasWrapper-prompt-start")[0],
             prompt_end = document.getElementsByClassName("app__canvasWrapper-prompt-end")[0],
         
             overlay = document.getElementsByClassName("app__overlay")[0],
         
-            configPopup = document.getElementsByClassName("app__popup-config")[0];
+            configPopup = document.getElementsByClassName("app__popup-config")[0],
+            rulesPopup = document.getElementsByClassName("app__popup-rules")[0];
         
         //ball
         var ball_radius = 15,
             ball_color = "blue",
-            gravity = 0.1,
+            gravity = 0.12,
             initial_position_X = canvas_w / 2,
             initial_position_Y = canvas_h / 2;
         
@@ -152,8 +154,12 @@
             return configIcon;
         }
         
-        function getCloseIcon(){
-            return closeIcon;
+        function getRulesIcon(){
+            return rulesIcon;
+        }
+        
+        function getCloseIcons(){
+            return closeIcons;
         }
         
         function getClock(){
@@ -182,6 +188,10 @@
         
         function getConfigPopup(){
             return configPopup;
+        }
+        
+        function getRulesPopup(){
+            return rulesPopup;
         }
         
         //ball
@@ -301,7 +311,8 @@
             getMedalIcon: getMedalIcon,
             getRestartIcon: getRestartIcon,
             getConfigIcon: getConfigIcon,
-            getCloseIcon: getCloseIcon,
+            getRulesIcon: getRulesIcon,
+            getCloseIcons: getCloseIcons,
             getClock: getClock,
             getClockActualTime: getClockActualTime,
             getClockBestTime: getClockBestTime,
@@ -309,6 +320,7 @@
             getPromptEnd: getPromptEnd,
             getOverlay: getOverlay,
             getConfigPopup: getConfigPopup,
+            getRulesPopup: getRulesPopup,
             
             getXo: getXo,
             getYo: getYo,

@@ -1,10 +1,17 @@
 $background-prompt-start: rgba(blue, .9);
 $background-prompt-end: rgba(red, .9);
+$background-panel: lighten(red, 30%);
 
+%icon-close{
+    width: 35px;
+    display: block;
+    margin: 0 0 8px auto;
+    cursor: pointer;
+}
 
 %info{
     position: absolute;
-    left: rem(5px);
+    left: 5px;
     font-weight: bold;
     color: white;
     z-index: 200;
@@ -14,7 +21,7 @@ $background-prompt-end: rgba(red, .9);
     text-align: center;
     display: block;
     width: 80%;
-    line-height: rem(50px);
+    line-height: 50px;
     position: absolute;
     margin: auto;
     top: 10%;
@@ -33,6 +40,30 @@ $background-prompt-end: rgba(red, .9);
     height: 100vh;
 }
 
+%popup-box{
+    width: 80%;
+    max-width: 400px;
+    margin: 5vh auto;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+.icon-minimize, 
+.icon-fullscreen, 
+.icon-medal,
+.icon-restart,
+.icon-config,
+.icon-rules{
+    width: 24px;
+    height: auto;
+    margin: 0 6px;
+    cursor: pointer;
+}
+.icon-rules{
+    width: 30px;
+}
+
 .app__canvasWrapper{
 
     position: relative;
@@ -49,18 +80,18 @@ $background-prompt-end: rgba(red, .9);
     &-info-lifes{
         @include flexy($disp: flex, $alig: center);
         @extend %info;
-        top: rem(5px);
+        top: 5px;
 
         & .icon-heart{
-            width: rem(20px);
+            width: 20px;
             height: auto;
-            margin-left: rem(5px);
+            margin-left: 5px;
         }
     }
 
     &-info-clock{
         @extend %info;
-        bottom: rem(5px);
+        bottom: 5px;
         
         & > p{
             text-align: right;
@@ -90,7 +121,12 @@ $background-prompt-end: rgba(red, .9);
     
     &__popup-config{
         @extend %fixed;
-        z-index: 300;
+        z-index: 500;
+    }
+    
+    &__popup-rules{
+        @extend %fixed;
+        z-index: 500;
     }
         
     &__panel{
@@ -98,23 +134,13 @@ $background-prompt-end: rgba(red, .9);
         @include flexy($disp: flex, $just: flex-end, $alig: center);
         width: 100%;
         position: relative;
-        padding: rem(8px) 0;
+        padding: 8px 0;
         z-index: 200;
-        background: red;
+        border-bottom: 2px solid #333;
+        background: $background-panel;
         
         & .push-both{
             flex: 1;
-        }
-        
-        & .icon-minimize, 
-        & .icon-fullscreen, 
-        & .icon-medal,
-        & .icon-restart,
-        & .icon-config{
-            width: rem(24px);
-            height: auto;
-            margin: 0 rem(6px);
-            cursor: pointer;
         }
     }
 }
@@ -122,18 +148,11 @@ $background-prompt-end: rgba(red, .9);
 
     
 .app__popup-config-box{
-    width: 80%;
-    max-width: 400px;
-    margin: 5vh auto;
-    padding: rem(10px);
-    border: 2px solid white;
-    border-radius: rem(10px);
-
+    
+    @extend %popup-box;
+    
     & .icon-close{
-        width: rem(35px);
-        display: block;
-        margin: 0 0 rem(8px) auto;
-        cursor: pointer;
+        @extend %icon-close;
     }
 
     & label{
@@ -143,26 +162,47 @@ $background-prompt-end: rgba(red, .9);
             flex-basis: 30%;
             text-align: right;
             background: red;
-            padding: rem(5px);
+            padding: 5px;
             color: white;
             font-weight: bold;
         }
 
         & input{
             flex-basis: 68%;
-            padding: rem(5px);
+            padding: 5px;
         }
     }
     
     & button{
         line-height: 1.5;
-        padding: 0 rem(55px);
+        padding: 0 55px;
         display: block;
-        margin: rem(15px) auto 0;
+        margin: 15px auto 0;
         cursor: pointer;
     }
 }
 
-
+.app__popup-rules-box{
+    
+    @extend %popup-box;
+    background: white;
+    border-color: red;
+    
+    & .icon-close{
+        @extend %icon-close;
+    }
+    
+    & .box-row{
+        @include flexy($disp: flex, $alig: center);
+        margin-bottom: 20px;
+        background: green;
+        
+        
+        &-label{
+            flex-basis: 200px;
+            background: blue;
+        }
+    }
+}
 
 

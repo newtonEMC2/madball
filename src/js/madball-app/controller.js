@@ -20,6 +20,7 @@
             lifeCounter = null,
             overlay = null,
             configPopup = null,
+            rulesPopup = null,
             bestTime = null,
             
             heartIcon = null,
@@ -28,7 +29,8 @@
             medallIcon = null,
             restartIcon = null,
             configIcon = null,
-            closeIcon = null,
+            rulesIcon = null,
+            closeIcons = null,
             
         //instances cache
             col_arr = [],
@@ -98,58 +100,77 @@
             
             
             //panel icons events
-            fullScreenIcon.onclick = function(e){
-                
-                fullScreenIcon.classList.add("is-hidden");
-                minimizeIcon.classList.remove("is-hidden");
-                overlay.classList.remove("is-hidden");
-                app.classList.add("is-centered");
+            fullScreenIcon.addEventListener("click", clickingFullScreenIcon);
+            
+            minimizeIcon.addEventListener("click", clickingMinimizeIcon);
+            
+            medallIcon.addEventListener("click", clickingMedalIcon);
+            
+            restartIcon.addEventListener("click", clickingRestartIcon);
+            
+            configIcon.addEventListener("click", clickingConfigIcon);
+            
+            rulesIcon.addEventListener("click", clickingRulesIcon);
+            
+            for(var i = 0; i < closeIcons.length; i++){
+                closeIcons[i].addEventListener("click", clickingCloseIcons);
             }
             
-            minimizeIcon.onclick = function(e){
-                
-                minimizeIcon.classList.add("is-hidden");
-                fullScreenIcon.classList.remove("is-hidden");
-                overlay.classList.add("is-hidden");
-                app.classList.remove("is-centered");
-            }
-            
-            medallIcon.onclick = function(e){
-                
-                if(bestTime.classList.contains("is-hidden")){
-                    
-                    bestTime.classList.remove("is-hidden");
-                    bestTime.innerHTML = "best: " + (!JSON.parse(localStorage.getItem("madballDB")).results[0] ? "0:00:0" : db.showBestResult());
-                
-                }else{
-                    
-                    bestTime.classList.add("is-hidden");
-                }
-            }
-            
-            restartIcon.onclick = function(e){
-                location.reload();
-            }
-            
-            configIcon.onclick = function(e){
-                
-                if(configPopup.classList.contains("is-hidden")){
-                   configPopup.classList.remove("is-hidden");
-                }else{
-                    configPopup.classList.add("is-hidden");
-                }
-                
-            }
-            
-            closeIcon.onclick = function(e){
-                configPopup.classList.add("is-hidden");
-            }
-                
         }
         
         //////////////////////////////////
         //  functions 
         //////////////////////////////////
+        function clickingFullScreenIcon(){
+            fullScreenIcon.classList.add("is-hidden");
+            minimizeIcon.classList.remove("is-hidden");
+            overlay.classList.remove("is-hidden");
+            app.classList.add("is-centered");
+        }
+        
+        function clickingMinimizeIcon(){
+            minimizeIcon.classList.add("is-hidden");
+            fullScreenIcon.classList.remove("is-hidden");
+            overlay.classList.add("is-hidden");
+            app.classList.remove("is-centered");
+        }
+        
+        function clickingMedalIcon(){
+            if(bestTime.classList.contains("is-hidden")){
+                    
+                bestTime.classList.remove("is-hidden");
+                bestTime.innerHTML = "best: " + (!JSON.parse(localStorage.getItem("madballDB")).results[0] ? "0:00:0" : db.showBestResult());
+
+            }else{
+
+                bestTime.classList.add("is-hidden");
+            }
+        }
+        
+        function clickingRestartIcon(){
+            location.reload();
+        }
+        
+        function clickingConfigIcon(){
+            if(configPopup.classList.contains("is-hidden")){
+               configPopup.classList.remove("is-hidden");
+            }else{
+                configPopup.classList.add("is-hidden");
+            }
+        }
+        
+        function clickingRulesIcon(){
+            if(rulesPopup.classList.contains("is-hidden")){
+               rulesPopup.classList.remove("is-hidden");
+            }else{
+                rulesPopup.classList.add("is-hidden");
+            }
+        }
+        
+        function clickingCloseIcons(e){
+            e.target.parentElement.parentElement
+            .classList.add("is-hidden");
+        }
         
         function setStageSize(){
             cnv.width = global.config.getCnvWidth();
@@ -276,9 +297,11 @@
             medallIcon = global.config.getMedalIcon();
             restartIcon = global.config.getRestartIcon();
             configIcon = global.config.getConfigIcon();
-            closeIcon = global.config.getCloseIcon();
+            rulesIcon = global.config.getRulesIcon();
+            closeIcons = global.config.getCloseIcons();
             overlay = global.config.getOverlay();
             configPopup = global.config.getConfigPopup();
+            rulesPopup = global.config.getRulesPopup();
             
             //instances
             bird = global.model.Bird();

@@ -58,6 +58,10 @@
         
         function tabHighlighting(){
             
+            for(var i = 0; i < tabs.length; i++){
+                tabs[i].classList.remove("is-selected");
+            }
+            
             mq = window.matchMedia( "(min-width: " + mq_medium + ")" );
             if(mq.matches){
                 return false;
@@ -66,10 +70,6 @@
             resultsTop_h = results.offsetTop;
             aboutTop_h = about.offsetTop;
             header_offsetHeight = header.offsetHeight;
-            
-            for(var i = 0; i < tabs.length; i++){
-                tabs[i].classList.remove("is-selected");
-            }
             
             if(window.pageYOffset >= 0 &&
                window.pageYOffset < resultsTop_h - header_offsetHeight){

@@ -15,6 +15,10 @@
             padding: rem(4px) 0;
             border-bottom: 1px solid black;
             
+            @include mq(l){
+                margin-bottom: rem(25px);
+            }
+            
             &-time{
                 float: right;
             }

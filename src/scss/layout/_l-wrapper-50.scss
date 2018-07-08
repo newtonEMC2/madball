@@ -1,0 +1,12 @@
+//used for containers 100% width in phone and tablet resolution, and 
+//less than 100% width in desktop resolution
+
+.l-wrapper-50{
+    width: 90%;
+    margin: auto;
+    
+    @include mq(l){
+        width: 65%;
+    }
+    
+}
