@@ -5,7 +5,7 @@ $background-panel: lighten(red, 30%);
 %icon-close{
     width: 35px;
     display: block;
-    margin: 0 0 8px auto;
+    margin: 0 0 14px auto;
     cursor: pointer;
 }
 
@@ -41,11 +41,12 @@ $background-panel: lighten(red, 30%);
 }
 
 %popup-box{
+    background: white;
     width: 80%;
     max-width: 400px;
     margin: 5vh auto;
     padding: 10px;
-    border: 2px solid white;
+    border: 2px solid lighten(red, 18%);
     border-radius: 10px;
 }
 
@@ -185,22 +186,24 @@ $background-panel: lighten(red, 30%);
 .app__popup-rules-box{
     
     @extend %popup-box;
-    background: white;
-    border-color: red;
-    
+        
     & .icon-close{
         @extend %icon-close;
     }
     
     & .box-row{
-        @include flexy($disp: flex, $alig: center);
+        @include flexy($disp: flex);
         margin-bottom: 20px;
-        background: green;
+                
+        & > img{
+            align-items: center;
+            cursor: default;
+            margin-left: 0;
+        }
         
         
         &-label{
-            flex-basis: 200px;
-            background: blue;
+            flex: 0 0 100px;
         }
     }
 }

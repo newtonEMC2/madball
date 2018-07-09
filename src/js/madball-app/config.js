@@ -31,12 +31,12 @@
             clockBestTime = document.getElementsByClassName("app__canvasWrapper-info-clock-best")[0],
             
             heartIcon = document.getElementsByClassName("icon-heart")[0],
-            fullscreenIcon = document.getElementsByClassName("icon-fullscreen")[0],
-            minimizeIcon = document.getElementsByClassName("icon-minimize")[0],
-            medalIcon = document.getElementsByClassName("icon-medal")[0],
-            restartIcon = document.getElementsByClassName("icon-restart")[0],
-            configIcon = document.getElementsByClassName("icon-config")[0],
-            rulesIcon = document.getElementsByClassName("icon-rules")[0],
+            fullscreenIcon = document.querySelector(".app__panel .icon-fullscreen"),
+            minimizeIcon = document.querySelector(".app__panel .icon-minimize"),
+            medalIcon = document.querySelector(".app__panel .icon-medal"),
+            restartIcon = document.querySelector(".app__panel .icon-restart"),
+            configIcon = document.querySelector(".app__panel .icon-config"),
+            rulesIcon = document.querySelector(".app__panel .icon-rules"),
             closeIcons = document.getElementsByClassName("icon-close"),
             
             prompt_start = document.getElementsByClassName("app__canvasWrapper-prompt-start")[0],
@@ -50,7 +50,7 @@
         //ball
         var ball_radius = 15,
             ball_color = "blue",
-            gravity = 0.12,
+            gravity = 0.1,
             initial_position_X = canvas_w / 2,
             initial_position_Y = canvas_h / 2;
         
